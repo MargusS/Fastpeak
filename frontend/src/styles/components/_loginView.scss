@@ -1,0 +1,21 @@
+@use '../settings/variables' as var;
+
+// #root {
+//   overflow: hidden;
+// }
+
+.login {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.bg-icon {
+  background-color: var.$orange;
+  position: relative;
+  width: 135vw;
+  height: 70vh;
+  margin-top: -10vh;
+  margin-left: -10vw;
+  border-radius: 100%;
+  transform: rotate(35deg);
+}
