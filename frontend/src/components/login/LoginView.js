@@ -1,5 +1,8 @@
 import React from "react";
-import CircleIcon from '@mui/icons-material/Circle';
+import { Typography } from "@mui/material";
+import { Container, Stack } from "@mui/system";
+import LoginForm from "../global/LoginForm";
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 export default function LoginView() {
   return (
@@ -8,6 +11,16 @@ export default function LoginView() {
       <div className="login-logo">
         <img src="/Logo.png" alt="Logo"></img>
       </div>
-    </div>
+      <LoginForm />
+      <div className="footer">
+        <Typography className="logo-name" variant="body1" gutterBottom>
+          FASTPEAK
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          All Rights Reserved
+        </Typography>
+        <CopyrightIcon></CopyrightIcon>
+      </div>
+    </div >
   )
 }

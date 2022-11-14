@@ -1,14 +1,35 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginView from "./components/login/LoginView";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { dark } from "@mui/material/styles/createPalette";
+
+const theme = createTheme({
+  palette: {
+    orange: {
+      main: '#CB4B2E',
+      contrastText: '#fff'
+    },
+    darkOrange: {
+      main: '#9A3B26',
+      contrastText: '#fff'
+    },
+    blue: {
+      main: '#272E4F',
+      contrastText: '#fff'
+    }
+  }
+})
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={< LoginView />} />
-        <Route path="/" element={< LoginView />} />
-      </Routes>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Routes>
+          <Route path="/login" element={< LoginView />} />
+          <Route path="/" element={< LoginView />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
