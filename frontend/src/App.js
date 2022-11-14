@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginView from "./components/login/LoginView";
+import HomeView from "./components/home/HomeView";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { dark } from "@mui/material/styles/createPalette";
 
@@ -26,6 +27,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={< LoginView />} />
+          <Route path="/home" element={< HomeView />} />
           <Route path="/" element={< LoginView />} />
         </Routes>
       </Router>

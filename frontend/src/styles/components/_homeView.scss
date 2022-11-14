@@ -1,0 +1,32 @@
+@use '../settings/variables' as var;
+@use '../settings/mixins' as mix;
+
+.header-bg {
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 8vh;
+    background-color: var.$orange;
+}
+
+.header {
+    width: 100vw;
+    position: absolute;
+    top: 1%;
+
+    .logo-name {
+        // position: absolute;
+        // top: 2%;
+        // left: 5%;
+        color: var.$blue;
+        font-weight: 600;
+        font-family: var.$logo_font;
+    }
+
+    .logOut-btn {
+        // position: absolute;
+        // top: 1%;
+        // right: 3%;
+    }
+}
