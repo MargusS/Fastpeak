@@ -9,14 +9,16 @@ export default function HomeView() {
     return (
         <div className="home">
             <BackgroundHeader class={"header-bg"}></BackgroundHeader>
-            <Stack direction="row" className="header" justifyContent="space-between" alignItems="center">
-                <Typography className="logo-name" variant="h5">
-                    FASTPEAK
-                </Typography>
-                <IconButton sx={{ color: "#fff" }} className="logOut-btn" aria-label="upload picture" component="label" size="large">
-                    <input hidden accept="image/*" type="file" />
-                    <LogoutIcon></LogoutIcon>
-                </IconButton>
+            <Stack className="header" justifyContent="center" alignItems="center">
+                <Stack direction="row" className="header-items" justifyContent="space-between" alignItems="center">
+                    <Typography className="logo-name" variant="h5">
+                        FASTPEAK
+                    </Typography>
+                    <IconButton sx={{ color: "#fff" }} className="logOut-btn" aria-label="upload picture" component="label" size="large">
+                        <input hidden accept="image/*" type="file" />
+                        <LogoutIcon></LogoutIcon>
+                    </IconButton>
+                </Stack>
             </Stack>
             <Chat></Chat>
 

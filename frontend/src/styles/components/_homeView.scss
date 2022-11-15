@@ -13,20 +13,26 @@
 .header {
     width: 100vw;
     position: absolute;
-    top: 1%;
+    width: 100vw;
+    height: 8vh;
+    top: 0;
+    column-gap: 7em;
+}
+
+.header-items {
+    width: 90%;
 
     .logo-name {
-        // position: absolute;
-        // top: 2%;
-        // left: 5%;
         color: var.$blue;
         font-weight: 600;
         font-family: var.$logo_font;
     }
+}
 
-    .logOut-btn {
-        // position: absolute;
-        // top: 1%;
-        // right: 3%;
+.chat {
+    padding: .5em 0;
+
+    .chat-items {
+        width: 90%;
     }
 }
