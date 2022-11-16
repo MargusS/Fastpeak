@@ -34,5 +34,10 @@
 
     .chat-items {
         width: 90%;
+        column-gap: 1em;
     }
+}
+
+.chat-text-item {
+    min-width: 65%;
 }
