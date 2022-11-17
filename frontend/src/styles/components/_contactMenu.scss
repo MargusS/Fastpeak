@@ -1,0 +1,20 @@
+@use '../settings/variables' as var;
+@use '../settings/mixins' as mix;
+
+.menu-controller {
+    position: fixed;
+    bottom: 0%;
+    width: 100vw;
+    height: 7vh;
+    background-color: var.$gray;
+    border-radius: 70% 0 0;
+    // overflow: hidden;
+}
+
+.menu-controller-btn {
+    top: -50%;
+    right: -30%;
+    width: 20px;
+    min-height: 60px;
+    border-radius: 50% !important;
+}

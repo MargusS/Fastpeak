@@ -3,7 +3,9 @@ import { Stack } from "@mui/system";
 import React from "react";
 import BackgroundHeader from "../global/BackgroundHeader";
 import LogoutIcon from '@mui/icons-material/Logout';
-import Chat from "../global/Chat";
+import ChatList from "../global/ChatList";
+import ContactMenu from "../global/ContactMenu";
+
 
 export default function HomeView() {
     return (
@@ -15,12 +17,13 @@ export default function HomeView() {
                         FASTPEAK
                     </Typography>
                     <IconButton sx={{ color: "#fff" }} className="logOut-btn" aria-label="upload picture" component="label" size="large">
-                        <input hidden accept="image/*" type="file" />
                         <LogoutIcon></LogoutIcon>
                     </IconButton>
                 </Stack>
             </Stack>
-            <Chat></Chat>
+            <ChatList></ChatList>
+            <ContactMenu></ContactMenu>
+
 
         </div>
     )
