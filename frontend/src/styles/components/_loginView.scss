@@ -1,4 +1,5 @@
 @use '../settings/variables' as var;
+@use '../settings/mixins' as mix;
 
 // #root {
 //   overflow: hidden;
@@ -9,13 +10,50 @@
   overflow: hidden;
 }
 
-.bg-icon {
+.login-bg {
+  z-index: -1;
   background-color: var.$orange;
-  position: relative;
-  width: 135vw;
-  height: 70vh;
-  margin-top: -10vh;
-  margin-left: -10vw;
+  position: fixed;
+  top: -120px;
+  left: -50px;
+  width: 700px;
+  height: 750px;
   border-radius: 100%;
-  transform: rotate(35deg);
+  // transform: rotate(30deg);
+
+  @include mix.tablet {
+    display: none;
+  }
+}
+
+.login-logo {
+  position: relative;
+  width: 100vw;
+  text-align: center;
+  // margin-top: 3em;
+  // margin-bottom: 1em;
+  margin: 2em 0;
+
+  img {
+    width: 60%;
+  }
+}
+
+.logIn-btn {
+  width: 35vw;
+}
+
+.footer {
+  display: flex;
+  column-gap: .2em;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  bottom: 1%;
+  color: var.$orange;
+
+  .logo-name {
+    font-family: var.$logo_font;
+    font-weight: 500;
+  }
 }
