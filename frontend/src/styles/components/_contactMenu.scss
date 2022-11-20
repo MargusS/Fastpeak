@@ -1,0 +1,41 @@
+@use '../settings/variables' as var;
+@use '../settings/mixins' as mix;
+
+.menu-controller {
+    z-index: 100;
+    position: fixed;
+    bottom: 0%;
+    width: 100vw;
+    height: 7vh;
+    background-color: var.$gray;
+    border-radius: 100% 0% 0;
+}
+
+.menu-controller-btn {
+    position: absolute;
+    top: -50%;
+    right: -70%;
+    width: 20px;
+    min-height: 60px;
+    border-radius: 50% !important;
+
+}
+
+.contact-list {
+    height: 0;
+}
+
+.expanded-menu {
+    height: 70vh;
+    border-radius: 35% 0 0;
+
+    .menu-controller-btn {
+        top: -5%;
+    }
+}
+
+.expanded-list {
+    max-height: 100%;
+    overflow: scroll;
+    border-radius: 35% 0 0;
+}

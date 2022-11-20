@@ -1,0 +1,47 @@
+@use '../settings/variables' as var;
+@use '../settings/mixins' as mix;
+
+.header-bg {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 8vh;
+    background-color: var.$orange;
+}
+
+.header {
+    z-index: 2;
+    width: 100vw;
+    position: fixed;
+    width: 100vw;
+    height: 8vh;
+    top: 0;
+    column-gap: 7em;
+}
+
+.header-items {
+    width: 90%;
+
+    .logo-name {
+        color: var.$blue;
+        font-weight: 600;
+        font-family: var.$logo_font;
+    }
+}
+
+.chat {
+    padding: .5em 0;
+    overflow: hidden;
+
+    .chat-items {
+        padding: .3em 0;
+        width: 90%;
+        column-gap: 1em;
+    }
+}
+
+.chat-text-item {
+    min-width: 70%;
+}

@@ -2,11 +2,12 @@ import React from "react";
 import { Typography } from "@mui/material";
 import LoginForm from "../global/LoginForm";
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import BackgroundHeader from "../global/BackgroundHeader";
 
 export default function LoginView() {
   return (
     <div className="login">
-      <div className="login-bg"></div>
+      <BackgroundHeader class={"login-bg"}></BackgroundHeader>
       <div className="login-logo">
         <img src="/Logo.png" alt="Logo"></img>
       </div>

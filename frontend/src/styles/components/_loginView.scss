@@ -1,10 +1,6 @@
 @use '../settings/variables' as var;
 @use '../settings/mixins' as mix;
 
-// #root {
-//   overflow: hidden;
-// }
-
 .login {
   min-height: 100vh;
   overflow: hidden;
