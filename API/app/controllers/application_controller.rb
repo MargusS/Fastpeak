@@ -1,28 +1,28 @@
 class ApplicationController < ActionController::API
   def index
-      @all = self.all 
+      @all = controller_name.classify.constantize.all 
       render json: @all
   end 
 
   def show
-      @detail = self.find(params[:id])
+      @detail = controller_name.classify.constantize.find(params[:id])
       render json: @detail
   end 
 
   def create
-      @create = self.create()
+      @create = controller_name.classify.constantize.create()
       render json: @create
   end 
 
   def update
-      @detail = self.find(params[:id])
+      @detail = controller_name.classify.constantize.find(params[:id])
       @detail.update()
       render json: @detail
   end 
 
   def destroy
-      @all = self.all 
-      @detail = self.find(params[:id])
+      @all = controller_name.classify.constantize.all 
+      @detail = controller_name.classify.constantize.find(params[:id])
       @detail.destroy
       render json: @all
   end 
