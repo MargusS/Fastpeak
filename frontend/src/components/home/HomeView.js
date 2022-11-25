@@ -21,7 +21,7 @@ export default function HomeView() {
                     </IconButton>
                 </Stack>
             </Stack>
-            {/* <ChatList></ChatList> */}
+            <ChatList></ChatList>
             <ContactMenu></ContactMenu>
 
 

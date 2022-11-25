@@ -6,19 +6,9 @@
     position: fixed;
     bottom: 0%;
     width: 100vw;
-    height: 7vh;
+    height: 50px;
     background-color: var.$gray;
     border-radius: 100% 0% 0;
-}
-
-.menu-controller-btn {
-    position: absolute;
-    top: -50%;
-    right: -70%;
-    width: 20px;
-    min-height: 60px;
-    border-radius: 50% !important;
-
 }
 
 .contact-list {
@@ -26,16 +16,29 @@
 }
 
 .expanded-menu {
-    height: 70vh;
-    border-radius: 35% 0 0;
+    height: 550px;
+    border-radius: 30% 0 0;
+}
 
-    .menu-controller-btn {
-        top: -5%;
-    }
+.menu-controller-btn-expanded {
+    bottom: 520px !important;
 }
 
 .expanded-list {
-    max-height: 100%;
-    overflow: scroll;
-    border-radius: 35% 0 0;
+    min-height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 30% 0 0;
+}
+
+.contact {
+    padding: .5em 0;
+    overflow: hidden;
+
+    .chat-items {
+        padding: .3em 0;
+        padding-left: 1em;
+        width: 90%;
+        column-gap: 1em;
+    }
 }

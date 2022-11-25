@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginView from "./components/login/LoginView";
 import HomeView from "./components/home/HomeView";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { dark } from "@mui/material/styles/createPalette";
+import Chat from "./components/global/Chat";
 
 const theme = createTheme({
   palette: {
@@ -28,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/login" element={< LoginView />} />
           <Route path="/home" element={< HomeView />} />
+          <Route path="/chat" element={< Chat />} />
           <Route path="/" element={< LoginView />} />
         </Routes>
       </Router>

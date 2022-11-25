@@ -4,7 +4,7 @@ import React from "react";
 import { useState } from "react";
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import ChatList from "./ChatList";
+import ContactList from "./ContactList";
 
 export default function ContactMenu() {
     const [expand, setExpand] = useState(false);
@@ -15,12 +15,12 @@ export default function ContactMenu() {
 
     return (
         <>
+            <Button color="blue" sx={{ position: "fixed", zIndex: 1000, bottom: 20, right: "10%", width: 20, minHeight: 60, borderRadius: "50%" }} className={expand ? "menu-controller-btn-expanded" : ""} variant="contained" component="label" onClick={handleClick}>
+                {expand ? <CloseOutlinedIcon></CloseOutlinedIcon> : <AddOutlinedIcon></AddOutlinedIcon>}
+            </Button>
             <Stack className={expand ? "menu-controller expanded-menu" : "menu-controller"} justifyContent="center">
-                <Button color="blue" className="menu-controller-btn" variant="contained" component="label" onClick={handleClick}>
-                    {expand ? <CloseOutlinedIcon></CloseOutlinedIcon> : <AddOutlinedIcon></AddOutlinedIcon>}
-                </Button>
                 <Stack className={expand ? "expanded-list" : "contact-list"}>
-                    <ChatList></ChatList>
+                    <ContactList></ContactList>
                 </Stack>
             </Stack >
 
