@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginView from "./components/login/LoginView";
 import HomeView from "./components/home/HomeView";
 import { createTheme, ThemeProvider } from "@mui/material";
-import Chat from "./components/global/Chat";
+import Chat from "./components/chat/Chat";
 
 const theme = createTheme({
   palette: {

@@ -33,3 +33,11 @@
     overflow: scroll;
     margin: 0 auto;
 }
+
+.received {
+    background-color: aqua !important;
+}
+
+.sent {
+    align-self: flex-end;
+}
