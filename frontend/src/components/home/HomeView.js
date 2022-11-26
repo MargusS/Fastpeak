@@ -23,8 +23,6 @@ export default function HomeView() {
             </Stack>
             <ChatList></ChatList>
             <ContactMenu></ContactMenu>
-
-
         </div>
     )
 }

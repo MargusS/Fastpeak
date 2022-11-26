@@ -1,13 +1,12 @@
 import { IconButton, Avatar, Typography, List, ListItem, Divider } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
-import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 
 export default function ChatList() {
     return (
-        <List className="chat-list" sx={{ padding: 0, marginTop: "8vh" }}>
+        <List className="chat-list" sx={{ padding: 0, paddingTop: "8vh" }}>
             <ListItem className="chat" direction="row" justifyContent="space-around" alignItems="center">
                 <Stack className="chat-items" direction="row" justifyContent="" alignItems="center">
                     <Avatar sx={{ width: 50, height: 50 }}></Avatar>
