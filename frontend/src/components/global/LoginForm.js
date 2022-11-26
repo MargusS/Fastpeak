@@ -31,7 +31,7 @@ export default function LoginForm() {
             </Typography>
           </item>
           <item>
-            <Button className="test2" variant="text" color="blue">Sign Up</Button>
+            <Button sx={{ verticalAlign: "baseline" }} className="test2" variant="text" color="blue">Sign Up</Button>
           </item>
         </Stack>
       </Container>

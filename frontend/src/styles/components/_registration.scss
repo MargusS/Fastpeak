@@ -1,0 +1,17 @@
+@use '../settings/variables' as var;
+@use '../settings/mixins' as mix;
+
+.signin {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.signin-logo {
+  position: relative;
+  width: 100vw;
+  margin: 1em 0;
+
+  img {
+    width: 60%;
+  }
+}

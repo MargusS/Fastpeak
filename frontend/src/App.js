@@ -3,6 +3,7 @@ import LoginView from "./components/login/LoginView";
 import HomeView from "./components/home/HomeView";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Chat from "./components/chat/Chat";
+import Registration from "./components/registration/Registration";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={< LoginView />} />
           <Route path="/home" element={< HomeView />} />
           <Route path="/chat" element={< Chat />} />
+          <Route path="/registration" element={< Registration />} />
           <Route path="/" element={< LoginView />} />
         </Routes>
       </Router>
