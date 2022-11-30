@@ -5,4 +5,6 @@ class User < ApplicationRecord
   has_many :messages
   has_many :contacts
   has_many :friend, through: :contacts
+  has_many :participants
+  has_many :chats, through: :participants
 end
