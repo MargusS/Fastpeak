@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :messages
-  resources :participants
   resources :contacts
   resources :chats
   resources :users

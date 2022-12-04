@@ -39,15 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_161018) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "participants", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "chat_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_id"], name: "index_participants_on_chat_id"
-    t.index ["user_id"], name: "index_participants_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "username"
@@ -61,6 +52,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_161018) do
   add_foreign_key "contacts", "users", column: "friend_id"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
-  add_foreign_key "participants", "chats"
-  add_foreign_key "participants", "users"
 end

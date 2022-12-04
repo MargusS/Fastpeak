@@ -1,11 +1,10 @@
 import { IconButton, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BackgroundHeader from "../global/BackgroundHeader";
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChatList from "../global/ChatList";
 import ContactMenu from "../global/ContactMenu";
-
 
 export default function HomeView() {
     return (
