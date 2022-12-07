@@ -3,9 +3,10 @@ import { FormControl, FormHelperText, Input, InputLabel, Button } from "@mui/mat
 import { Box, Stack } from "@mui/system";
 import Typography from '@mui/material/Typography';
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
-
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -20,23 +21,32 @@ export default function LoginForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log({ user })
     axios.post(`http://127.0.0.1:3000/sessions`, { user })
-      .then(console.log("ok"))
+      .then(res => { console.log(res) })
+      .catch(err => { console.log(err) })
+    navigate(`/home`);
   };
+
+  const test = () => {
+    axios.get(`http://127.0.0.1:3000/current`)
+      .then(res => { console.log(res) })
+  }
 
   return (
     <>
       <Box component="form" onSubmit={handleSubmit}>
         <Stack spacing={3} justifyContent="center" alignItems="center">
-          <FormControl variant="standard" color="blue" >
-            <InputLabel htmlFor="email" >Username</InputLabel>
-            <Input id="email" type="email" onChange={handleChange} value={user.email} />
+          <FormControl variant="standard" color="blue">
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input id="password" type="password" onChange={handleChange} value={user.password} />
+            <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <Button className="logIn-btn" variant="contained" color="blue" size="large" type="submit">Log In</Button>
+          <Button className="logIn-btn" variant="contained" color="blue" size="large" onClick={test}>Test</Button>
         </Stack>
         <Stack direction="row" justifyContent="center" alignItems="center" mt={1}>
           <Typography className="test" variant="body2" color="white">

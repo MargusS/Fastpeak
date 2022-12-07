@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
-#   skip_before_action :verify_authenticity_token
+    include ActionController::Cookies
+    include CurrentUserConcern
+    # before_action :logged_in
 
   def index
       @all = controller_name.classify.constantize.all 
@@ -28,4 +30,12 @@ class ApplicationController < ActionController::API
       @detail.destroy
       render json: @all
   end 
+
+  def logged_in
+    unless @current_user
+        render json: {
+            logged_in: false
+          }, status: :unauthorized and return
+    end
+  end
 end

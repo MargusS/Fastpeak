@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/login" element={< LoginView />} />
           <Route path="/home" element={< HomeView />} />
-          <Route path="/chat" element={< Chat />} />
+          <Route path="/chat/:id" element={< Chat />} />
           <Route path="/registration" element={< Registration />} />
           <Route path="/" element={< LoginView />} />
         </Routes>
