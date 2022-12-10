@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack } from "@mui/system";
-import { Avatar, IconButton, Typography, Button } from "@mui/material";
+import { FormControl, Input, InputLabel, Avatar, IconButton, Typography, Button, Box } from "@mui/material";
 import BackgroundHeader from "../global/BackgroundHeader";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Message from "../global/Message";
@@ -12,10 +12,13 @@ import axios from "axios";
 
 export default function Chat() {
   const navigate = useNavigate();
-  const [value, setValue] = useState('');
-  const [chat, setChat] = useState({});
-
   const { id } = useParams();
+
+  const [message, setMessage] = useState({
+    content: "",
+    chat: id,
+  });
+  const [chat, setChat] = useState({});
 
   useEffect(() => {
     getChat();
@@ -26,8 +29,23 @@ export default function Chat() {
       .then(res => setChat(res.data))
   }
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log({ message })
+    axios.post(`http://127.0.0.1:3000/messages`, { message })
+      .then(res => { console.log(res) })
+      .catch(err => { console.log(err) })
+    setMessage({
+      ...message,
+      content: ""
+    })
+  };
+
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setMessage({
+      ...message,
+      [event.target.name]: event.target.value
+    })
   };
 
   return (
@@ -55,15 +73,24 @@ export default function Chat() {
       </Stack>
       <Stack className="conversation">
         <Stack className="messages-body">
-          {/* <Message type="received"></Message>
-          <Message type="sent"></Message> */}
+          {
+            Object.keys(chat).length === 0 ?
+              "" :
+              Array.from(chat.messages).map((mess, i) => {
+                return (
+                  <Message key={i} type={mess.type} content={mess.content}></Message>
+                )
+              })
+          }
         </Stack>
-        <Stack component="form" direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
-          <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} value={value} onChange={handleChange} />
-          <Button color="blue" size="large" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} variant="contained" component="label" type="submit">
-            <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
-          </Button>
-        </Stack>
+        <Box component="form" onSubmit={handleSubmit}>
+          <Stack direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
+            <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="content" onChange={handleChange} value={message.content} />
+            <Button variant="contained" color="blue" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} size="large" type="submit">
+              <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
+            </Button>
+          </Stack>
+        </Box>
       </Stack>
     </>
   )

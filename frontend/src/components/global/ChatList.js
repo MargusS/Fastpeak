@@ -25,6 +25,7 @@ export default function ChatList() {
 
     return (
         <List className="chat-list" sx={{ padding: 0, paddingTop: "8vh" }}>
+            {console.log(chatListData)}
             {
                 Array.from(chatListData).map((chat, i) => {
                     return (

@@ -15,12 +15,28 @@ class ChatsController < ApplicationController
     render json: @chat
   end
 
+  def index
+    @chatList = Member.where(user_id: 1).map{|member| Chat.find(member.chat_id).id}
+    @chatsUser = @chatList.map{|chat| Member.where(chat_id: chat)}.map{|array| array.map{|member| User.where.not(id: 1).where(id: member.user_id)}}
+    # @reduceLevel = @chatsUser.map{|array| array}
+    render json: @chatsUser
+  end 
+
   def show
     @chat = Chat.find(params[:id])
-    @members = Member.where(chat_id: params[:id]).where.not(user_id: 1).map{|friend| User.find(friend.id)}
+    @members = Member.where(chat_id: params[:id]).where.not(user_id: 1).map{|friend| User.find(friend.user_id)}
+    @messages = Message.where(chat_id: params[:id]).map{|mess| 
+      hash = mess.attributes
+      if hash["user_id"] == 1
+        {**hash, type: 'sent'}
+      else
+        {**hash, type: 'received'}
+      end
+    }
     render json: {
       chat: @chat,
-      members: @members
+      members: @members,
+      messages: @messages
     }
   end 
 end
