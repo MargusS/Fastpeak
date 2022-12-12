@@ -1,8 +1,9 @@
-import { IconButton, Typography } from "@mui/material";
+import { IconButton, Typography, Avatar } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import BackgroundHeader from "../global/BackgroundHeader";
-import LogoutIcon from '@mui/icons-material/Logout';
+import SortOutlinedIcon from '@mui/icons-material/SortOutlined';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import ChatList from "../global/ChatList";
 import ContactMenu from "../global/ContactMenu";
 import { useNavigate } from "react-router-dom";
@@ -18,12 +19,12 @@ export default function HomeView() {
             <BackgroundHeader class={"header-bg"}></BackgroundHeader>
             <Stack className="header" justifyContent="center" alignItems="center">
                 <Stack direction="row" className="header-items" justifyContent="space-between" alignItems="center">
+                    <IconButton sx={{ color: "#fff" }} className="logOut-btn" aria-label="upload picture" component="label" size="large" onClick={() => handleClick()}>
+                        <Avatar></Avatar>
+                    </IconButton>
                     <Typography className="logo-name" variant="h5">
                         FASTPEAK
                     </Typography>
-                    <IconButton sx={{ color: "#fff" }} className="logOut-btn" aria-label="upload picture" component="label" size="large" onClick={() => handleClick()}>
-                        <LogoutIcon></LogoutIcon>
-                    </IconButton>
                 </Stack>
             </Stack>
             <ChatList></ChatList>

@@ -22,14 +22,14 @@ export default function LoginForm() {
   const handleSubmit = event => {
     event.preventDefault();
     console.log({ user })
-    axios.post(`http://127.0.0.1:3000/sessions`, { user })
+    axios.post(`http://127.0.0.1:3000/sessions`, { user }, { withCredentials: true })
       .then(res => { console.log(res) })
       .catch(err => { console.log(err) })
     navigate(`/home`);
   };
 
   const test = () => {
-    axios.get(`http://127.0.0.1:3000/current`)
+    axios.get(`http://127.0.0.1:3000/current`, { withCredentials: true })
       .then(res => { console.log(res) })
   }
 

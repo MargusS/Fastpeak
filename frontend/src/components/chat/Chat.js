@@ -60,12 +60,12 @@ export default function Chat() {
           <Stack className="chat-text-item">
             <Typography variant="h5">
               {
-                Object.keys(chat).length === 0 ? "" : chat.members[0].username
+                Object.keys(chat).length === 0 ? "user" : chat.members[0]['username']
               }
             </Typography>
             <Typography variant="body1">
               {
-                Object.keys(chat).length === 0 ? "" : chat.members[0].status
+                Object.keys(chat).length === 0 ? "" : chat.members[0]['status']
               }
             </Typography>
           </Stack>
@@ -83,14 +83,12 @@ export default function Chat() {
               })
           }
         </Stack>
-        <Box component="form" onSubmit={handleSubmit}>
-          <Stack direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
-            <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="content" onChange={handleChange} value={message.content} />
-            <Button variant="contained" color="blue" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} size="large" type="submit">
-              <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
-            </Button>
-          </Stack>
-        </Box>
+        <Stack component="form" onSubmit={handleSubmit} direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
+          <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="content" onChange={handleChange} value={message.content} />
+          <Button variant="contained" color="blue" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} size="large" type="submit">
+            <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
+          </Button>
+        </Stack>
       </Stack>
     </>
   )

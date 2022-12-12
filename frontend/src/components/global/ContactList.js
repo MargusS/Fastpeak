@@ -42,7 +42,7 @@ export default function ContactList() {
                                         </Typography>
                                     </Stack>
                                 </Stack>
-                                <Divider></Divider>
+                                {/* <Divider></Divider> */}
                             </ListItem>
                         )
                     })
