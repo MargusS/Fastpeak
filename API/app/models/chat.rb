@@ -1,5 +1,5 @@
 class Chat < ApplicationRecord
   has_many :messages
-  has_many :participants
-  has_many :users, through: :participants
+  has_many :members
+  has_many :users, through: :members
 end
