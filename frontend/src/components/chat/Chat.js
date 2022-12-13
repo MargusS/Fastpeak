@@ -4,13 +4,14 @@ import { Stack } from "@mui/system";
 import { FormControl, Input, InputLabel, Avatar, IconButton, Typography, Button, Box } from "@mui/material";
 import BackgroundHeader from "../global/BackgroundHeader";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Message from "../global/Message";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
-
+import Message from "../global/Message";
+import { createConsumer } from "@rails/actioncable"
 
 export default function Chat() {
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -19,19 +20,55 @@ export default function Chat() {
     chat: id,
   });
   const [chat, setChat] = useState({});
+  const [cable, setCable] = useState(null);
+
+  // useEffect(() => {
+  //   getChat();
+  //   if (cable) {
+  //     cable.subscriptions.create({ channel: 'ChatChannel' }, {
+  //       received: data => {
+  //         // Handle incoming message data
+  //         dispatch(receivedMessage(data));
+  //       }
+  //     });
+  //   }
+  //   // mountCable();
+  // }, [cable, dispatch]);
 
   useEffect(() => {
     getChat();
-  }, []);
+    if (!cable) {
+      const cable = createConsumer('http://127.0.0.1:3000/cable');
+      setCable(cable);
+    }
+  }, [cable]);
+
+  useEffect(() => {
+    if (cable) {
+      const subscription = cable.subscriptions.create(
+        { channel: "ChatChannel", id: id }, {
+        received: data => {
+          setChat(...chat, data)
+        }
+      });
+      return () => {
+        subscription.unsubscribe();
+      }
+    }
+  }, [cable]);
 
   const getChat = () => {
     axios.get(`http://127.0.0.1:3000/chats/${id}`)
       .then(res => setChat(res.data))
   }
 
+  const mountCable = () => {
+    cable.subscriptions.create(
+      { channel: "ChatChannel", id: id })
+  }
+
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({ message })
     axios.post(`http://127.0.0.1:3000/messages`, { message })
       .then(res => { console.log(res) })
       .catch(err => { console.log(err) })
