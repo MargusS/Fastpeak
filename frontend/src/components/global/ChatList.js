@@ -23,6 +23,13 @@ export default function ChatList() {
         navigate(`/chat/${chat}`)
     }
 
+    const handleChatDelete = (id) => {
+        axios.delete(`http://127.0.0.1:3000/chats/${id}`)
+            .then(() => {
+                setChatListData(current => current.filter(chatList => { return chatList.id !== id }))
+            })
+    }
+
     return (
         <List className="chat-list" sx={{ padding: 0, paddingTop: "8vh" }}>
             {
@@ -40,7 +47,7 @@ export default function ChatList() {
                                     </Typography>
                                 </Stack>
                             </Stack>
-                            <ChatOption></ChatOption>
+                            <ChatOption chatID={chat.id} chatDelete={handleChatDelete}></ChatOption>
                             {/* <Divider></Divider> */}
                         </ListItem >
                     )

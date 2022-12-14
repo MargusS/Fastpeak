@@ -4,46 +4,52 @@ import { Stack } from "@mui/system";
 import { Avatar, IconButton, Typography, Button } from "@mui/material";
 import BackgroundHeader from "../global/BackgroundHeader";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Message from "../global/Message";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 
-
-export default function Chat() {
+export default function NewChat() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [message, setMessage] = useState({
-    content: "",
-    chat: id,
-  });
-  const [chat, setChat] = useState({});
-
   useEffect(() => {
-    getChat();
-  }, []);
+    getUser();
+  }, [])
 
-  const getChat = () => {
-    axios.get(`http://127.0.0.1:3000/chats/${id}`)
-      .then(res => setChat(res.data))
+  const [chat, setChat] = useState({
+    name: "test client",
+    user: id,
+    message: ""
+  });
+  const [user, setUser] = useState({
+    name: "",
+    status: "",
+  });
+
+  const getUser = () => {
+    axios(`http://127.0.0.1:3000/users/${id}`)
+      .then(res => {
+        setUser({
+          ...user, name: res.data.username, status: res.data.status
+        })
+      })
   }
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({ message })
-    axios.post(`http://127.0.0.1:3000/messages`, { message })
-      .then(res => { console.log(res) })
+    console.log(chat)
+    axios.post(`http://127.0.0.1:3000/chats`, { chat })
+      .then(res => { navigate(`/chat/${res.data.id}`) })
       .catch(err => { console.log(err) })
-    setMessage({
-      ...message,
-      content: ""
+    setChat({
+      ...chat,
+      message: ""
     })
   };
 
   const handleChange = (event) => {
-    setMessage({
-      ...message,
+    setChat({
+      ...chat,
       [event.target.name]: event.target.value
     })
   };
@@ -60,12 +66,12 @@ export default function Chat() {
           <Stack className="chat-text-item">
             <Typography variant="h5">
               {
-                Object.keys(chat).length === 0 ? "user" : chat.members[0]['username']
+                user.name
               }
             </Typography>
             <Typography variant="body1">
               {
-                Object.keys(chat).length === 0 ? "" : chat.members[0]['status']
+                user.status
               }
             </Typography>
           </Stack>
@@ -73,18 +79,9 @@ export default function Chat() {
       </Stack>
       <Stack className="conversation">
         <Stack className="messages-body">
-          {
-            Object.keys(chat).length === 0 ?
-              "" :
-              Array.from(chat.messages).map((mess, i) => {
-                return (
-                  <Message key={i} type={mess.type} content={mess.content}></Message>
-                )
-              })
-          }
         </Stack>
         <Stack component="form" onSubmit={handleSubmit} direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
-          <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="content" onChange={handleChange} value={message.content} />
+          <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="message" onChange={handleChange} value={chat.message} />
           <Button variant="contained" color="blue" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} size="large" type="submit">
             <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
           </Button>

@@ -10,7 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function ChatOption() {
+export default function ChatOption({ chatID, chatDelete }) {
   const [options, setOptions] = useState(null)
   const [visible, setVisible] = useState(false)
 
@@ -28,6 +28,10 @@ export default function ChatOption() {
   const handleCloseDialog = (event) => {
     event.stopPropagation();
     setVisible(!visible);
+    if (event.target.name === "confirm") {
+      chatDelete(chatID)
+    }
+
   };
 
   const onDelete = (event) => {
@@ -70,8 +74,8 @@ export default function ChatOption() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog}>CANCEL</Button>
-          <Button onClick={handleCloseDialog} autoFocus>
+          <Button name="cancel" onClick={handleCloseDialog}>CANCEL</Button>
+          <Button name="confirm" onClick={handleCloseDialog} autoFocus>
             CONFIRM
           </Button>
         </DialogActions>

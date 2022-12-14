@@ -33,6 +33,10 @@ export default function LoginForm() {
       .then(res => { console.log(res) })
   }
 
+  const handleClick = () => {
+    navigate('/registration')
+  }
+
   return (
     <>
       <Box component="form" onSubmit={handleSubmit}>
@@ -52,7 +56,7 @@ export default function LoginForm() {
           <Typography className="test" variant="body2" color="white">
             No account yet?
           </Typography>
-          <Button sx={{ verticalAlign: "baseline" }} className="test2" variant="text" color="blue">Sign Up</Button>
+          <Button sx={{ verticalAlign: "baseline" }} className="test2" variant="text" color="blue" onClick={handleClick}>Sign Up</Button>
         </Stack>
       </Box>
     </>
