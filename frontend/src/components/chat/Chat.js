@@ -53,7 +53,7 @@ export default function Chat() {
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
       <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
         <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>
-          <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" aria-label="upload picture" component="label" size="large" onClick={() => navigate('/home')}>
+          <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" component="label" size="large" onClick={() => navigate('/home')}>
             <ArrowBackIosNewIcon sx={{ width: "1.3em", height: "1.5em" }}></ArrowBackIosNewIcon>
           </IconButton>
           <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }}></Avatar>
