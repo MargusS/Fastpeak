@@ -5,11 +5,13 @@ import BackgroundHeader from "../global/BackgroundHeader";
 import ChatList from "../global/ChatList";
 import ContactMenu from "../global/ContactMenu";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function HomeView() {
     const navigate = useNavigate()
     const handleClick = () => {
-        navigate('/login');
+        axios.delete('/api/logout')
+            .then(navigate('/login'))
     }
 
     return (

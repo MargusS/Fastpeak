@@ -31,11 +31,11 @@ class ApplicationController < ActionController::API
       render json: @all
   end 
 
-  def logged_in
-    unless @current_user
-        render json: {
-            logged_in: false
-          }, status: :unauthorized and return
-    end
-  end
+#   def logged_in
+#     unless @current_user
+#         render json: {
+#             logged_in: false
+#           }, status: :unauthorized and return
+#     end
+#   end
 end

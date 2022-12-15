@@ -7,17 +7,17 @@ class ChatsController < ApplicationController
     # create a new member with the current user
     @member = Member.create(user_id: params['chat']['user'], chat_id: @chat.id)
     # create the member with the members list
-    @member = Member.create(user_id: 1, chat_id:@chat.id)
+    @member = Member.create(user_id: @current_user.id, chat_id:@chat.id)
     # create a new message
-    @message = Message.create(content: params['chat']['message'], user_id: 1, chat_id: @chat.id)
+    @message = Message.create(content: params['chat']['message'], user_id: @current_user.id, chat_id: @chat.id)
 
     render json: @chat
   end
 
   def index
-    @chatList = Chat.joins(:members).where(:members => {user_id: 1}).as_json(only: [:id,:name])
+    @chatList = Chat.joins(:members).where(:members => {user_id: @current_user.id}).as_json(only: [:id,:name])
     @response = @chatList.map{|chat| 
-        @members = User.joins(:members).where(:members => {chat_id: chat['id']}).where.not(id: 1)
+        @members = User.joins(:members).where(:members => {chat_id: chat['id']}).where.not(id: @current_user.id)
         {**chat, members: @members}
     }
     render json: @response
@@ -25,10 +25,10 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id]).as_json(only: [:id,:name])
-    @members = User.joins(:members).where.not(id: 1).where(:members => {chat_id: params[:id]}).as_json(only: [:id,:username,:status])
+    @members = User.joins(:members).where.not(id: @current_user.id).where(:members => {chat_id: params[:id]}).as_json(only: [:id,:username,:status])
     @messages = Message.where(chat_id: params[:id]).map{|mess| 
       hash = mess.attributes
-      if hash["user_id"] == 1
+      if hash["user_id"] == @current_user.id
         {**hash, type: 'sent'}
       else
         {**hash, type: 'received'}

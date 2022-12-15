@@ -13,7 +13,7 @@ export default function ContactList() {
     }, []);
 
     const getData = () => {
-        axios.get(`http://127.0.0.1:3000/contacts?id=1`)
+        axios.get(`/api/contacts`)
             .then(res => setContactListData(res.data));
     };
 

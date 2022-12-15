@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
           status: :created,
           logged_in: true,
           user: @user,
-          current: @current_user
+          current: session[:user_id]
         }
       else
         render json: { status: 404 }, status: 404 and return

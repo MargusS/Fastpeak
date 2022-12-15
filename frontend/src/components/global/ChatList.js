@@ -15,7 +15,7 @@ export default function ChatList() {
     }, []);
 
     const getData = () => {
-        axios.get(`http://127.0.0.1:3000/chats`)
+        axios.get(`/api/chats`)
             .then(res => setChatListData(res.data));
     };
 
@@ -24,7 +24,7 @@ export default function ChatList() {
     }
 
     const handleChatDelete = (id) => {
-        axios.delete(`http://127.0.0.1:3000/chats/${id}`)
+        axios.delete(`/api/chats/${id}`)
             .then(() => {
                 setChatListData(current => current.filter(chatList => { return chatList.id !== id }))
             })

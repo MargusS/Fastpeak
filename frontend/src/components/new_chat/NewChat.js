@@ -27,7 +27,7 @@ export default function NewChat() {
   });
 
   const getUser = () => {
-    axios(`http://127.0.0.1:3000/users/${id}`)
+    axios(`/api/users/${id}`)
       .then(res => {
         setUser({
           ...user, name: res.data.username, status: res.data.status
@@ -38,7 +38,7 @@ export default function NewChat() {
   const handleSubmit = event => {
     event.preventDefault();
     console.log(chat)
-    axios.post(`http://127.0.0.1:3000/chats`, { chat })
+    axios.post(`/api/chats`, { chat })
       .then(res => { navigate(`/chat/${res.data.id}`) })
       .catch(err => { console.log(err) })
     setChat({

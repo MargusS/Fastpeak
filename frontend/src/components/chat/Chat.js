@@ -25,14 +25,14 @@ export default function Chat() {
   }, []);
 
   const getChat = () => {
-    axios.get(`http://127.0.0.1:3000/chats/${id}`)
+    axios.get(`/api/chats/${id}`)
       .then(res => setChat(res.data))
   }
 
   const handleSubmit = event => {
     event.preventDefault();
     console.log({ message })
-    axios.post(`http://127.0.0.1:3000/messages`, { message })
+    axios.post(`/api/messages`, { message })
       .then(res => { console.log(res) })
       .catch(err => { console.log(err) })
     setMessage({
