@@ -41,14 +41,15 @@ export default function Chat() {
       const cable = createConsumer('http://127.0.0.1:3000/cable');
       setCable(cable);
     }
-  }, [cable]);
+  }, []);
 
   useEffect(() => {
     if (cable) {
       const subscription = cable.subscriptions.create(
-        { channel: "ChatChannel", id: id }, {
+        { channel: "ChatChannel" }, {
         received: data => {
-          setChat(...chat, data)
+          // setChat({ ...chat, data })
+          console.log(data)
         }
       });
       return () => {
