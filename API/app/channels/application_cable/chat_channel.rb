@@ -5,14 +5,14 @@ class ChatChannel < ApplicationCable::Channel
     # stop_all_streams
     # messages = Message.where(chat_id: params[:id])
     # stream_for messages
-    stream_from "chat_message_bicycles"
+    stream_from "ChatChannel"
   end
 
   def unsubscribed
     stop_all_streams
   end
 
-  def receive(data)
-    ActionCable.server.broadcast("chat_message_bicycles",{ body: data })
-  end
+  # def receive(data)
+  #   ActionCable.server.broadcast("chat_message_bicycles",{ body: data })
+  # end
 end

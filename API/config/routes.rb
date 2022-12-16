@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
-
   scope :api do
     resources :messages
     resources :contacts

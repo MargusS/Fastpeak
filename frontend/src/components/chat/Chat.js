@@ -8,9 +8,11 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 import Message from "../global/Message";
-import { createConsumer } from "@rails/actioncable"
+// import { createConsumer } from "@rails/actioncable"
 
 export default function Chat() {
+
+  const ws = new WebSocket('ws://127.0.0.1:3000/cable')
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -20,60 +22,83 @@ export default function Chat() {
     chat: id,
   });
   const [chat, setChat] = useState({});
-  const [cable, setCable] = useState(null);
+  // const [cable, setCable] = useState(null);
+  const messagesContainer = document.querySelector(".messages-body");
 
-  // useEffect(() => {
-  //   getChat();
-  //   if (cable) {
-  //     cable.subscriptions.create({ channel: 'ChatChannel' }, {
-  //       received: data => {
-  //         // Handle incoming message data
-  //         dispatch(receivedMessage(data));
-  //       }
-  //     });
-  //   }
-  //   // mountCable();
-  // }, [cable, dispatch]);
+  ws.onopen = () => {
+    console.log("Connencted")
+
+    ws.send(
+      JSON.stringify({
+        command: "subscribe",
+        identifier: JSON.stringify({
+          channel: "ChatChannel",
+        }),
+      })
+    );
+  }
+
+  ws.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    if (data.type === "ping") return;
+    if (data.type === "welcome") return;
+    if (data.type === "confirm_subscription") return;
+    console.log("test", e.data);
+
+    const message = data.message;
+    console.log("datahola", message);
+    test("llegue");
+  };
 
   useEffect(() => {
     getChat();
-    if (!cable) {
-      const cable = createConsumer('http://127.0.0.1:3000/cable');
-      setCable(cable);
-    }
+    // if (!cable) {
+    //   const cable = createConsumer('http://127.0.0.1:3000/cable');
+    //   setCable(cable);
+    // }
   }, []);
-
   useEffect(() => {
-    if (cable) {
-      const subscription = cable.subscriptions.create(
-        { channel: "ChatChannel" }, {
-        received: data => {
-          // setChat({ ...chat, data })
-          console.log(data)
-        }
-      });
-      return () => {
-        subscription.unsubscribe();
-      }
-    }
-  }, [cable]);
+    if (Object.keys(chat).length !== 0) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }, [chat]);
+
+  const test = (ms) => {
+    console.log(ms)
+  }
+
+  // useEffect(() => {
+  //   if (cable) {
+  //     const subscription = cable.subscriptions.create(
+  //       { channel: "ChatChannel" }, {
+  //       received: data => {
+  //         // setChat({ ...chat, data })
+  //         console.log(data)
+  //       }
+  //     });
+  //     return () => {
+  //       subscription.unsubscribe();
+  //     }
+  //   }
+  // }, [cable]);
 
   const getChat = () => {
     axios.get(`/api/chats/${id}`)
-      .then(res => setChat(res.data))
+      // .then(res => setChat(res.data))
+      .then(res => updateChat(res.data))
+    // .then(res => console.log(res.data))
   }
 
-  const mountCable = () => {
-    cable.subscriptions.create(
-      { channel: "ChatChannel", id: id })
-  }
+  const updateChat = (data) => {
+    setChat(prev => prev = data)
+  };
+
+  // const mountCable = () => {
+  //   cable.subscriptions.create(
+  //     { channel: "ChatChannel", id: id })
+  // }
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({ message })
     axios.post(`/api/messages`, { message })
-      .then(res => { console.log(res) })
-      .catch(err => { console.log(err) })
     setMessage({
       ...message,
       content: ""
