@@ -12,6 +12,7 @@ import Message from "../global/Message";
 
 export default function Chat() {
 
+  const localID = localStorage.getItem('user_id')
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -52,6 +53,7 @@ export default function Chat() {
 
   useEffect(() => {
     getChat();
+    console.log(localID)
   }, []);
 
   useEffect(() => {
@@ -74,8 +76,6 @@ export default function Chat() {
       ...chat,
       messages: [...chat.messages, data]
     })
-    console.log("este es el data: ", data)
-    console.log("este es el chat: ", chat)
   };
 
   const handleSubmit = event => {
@@ -127,7 +127,7 @@ export default function Chat() {
               "" :
               Array.from(chat.messages).map((mess, i) => {
                 return (
-                  <Message key={i} type={mess.type} content={mess.content}></Message>
+                  <Message key={i} type={mess.user_id === localID ? "received" : "sent"} content={mess.content}></Message>
                 )
               })
           }
