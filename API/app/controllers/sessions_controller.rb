@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  # include CurrentUserConcern
-  # skip_before_action :logged_in
+  include CurrentUserConcern
+  skip_before_action :logged_in
   
   def create
     unless @current_user
