@@ -2,16 +2,16 @@ import { IconButton, Typography, Avatar } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import BackgroundHeader from "../global/BackgroundHeader";
-import SortOutlinedIcon from '@mui/icons-material/SortOutlined';
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import ChatList from "../global/ChatList";
 import ContactMenu from "../global/ContactMenu";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function HomeView() {
     const navigate = useNavigate()
     const handleClick = () => {
-        navigate('/login');
+        axios.delete('/api/logout')
+            .then(navigate('/login'))
     }
 
     return (

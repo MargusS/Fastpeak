@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack } from "@mui/system";
-import { FormControl, Input, InputLabel, Avatar, IconButton, Typography, Button, Box } from "@mui/material";
+import { Avatar, IconButton, Typography, Button } from "@mui/material";
 import BackgroundHeader from "../global/BackgroundHeader";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
@@ -59,7 +59,7 @@ export default function Chat() {
   }, [cable]);
 
   const getChat = () => {
-    axios.get(`http://127.0.0.1:3000/chats/${id}`)
+    axios.get(`/api/chats/${id}`)
       .then(res => setChat(res.data))
   }
 
@@ -70,7 +70,8 @@ export default function Chat() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    axios.post(`http://127.0.0.1:3000/messages`, { message })
+    console.log({ message })
+    axios.post(`/api/messages`, { message })
       .then(res => { console.log(res) })
       .catch(err => { console.log(err) })
     setMessage({
@@ -91,7 +92,7 @@ export default function Chat() {
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
       <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
         <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>
-          <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" aria-label="upload picture" component="label" size="large" onClick={() => navigate('/home')}>
+          <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" component="label" size="large" onClick={() => navigate('/home')}>
             <ArrowBackIosNewIcon sx={{ width: "1.3em", height: "1.5em" }}></ArrowBackIosNewIcon>
           </IconButton>
           <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }}></Avatar>

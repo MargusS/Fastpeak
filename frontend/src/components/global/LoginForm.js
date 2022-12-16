@@ -21,16 +21,16 @@ export default function LoginForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({ user })
-    axios.post(`http://127.0.0.1:3000/sessions`, { user }, { withCredentials: true })
-      .then(res => { console.log(res) })
+    axios.post(`/api/sessions`, { user }, { withCredentials: true })
+      .then(res => {
+        console.log(res)
+        navigate(`/home`)
+      })
       .catch(err => { console.log(err) })
-    navigate(`/home`);
   };
 
-  const test = () => {
-    axios.get(`http://127.0.0.1:3000/current`, { withCredentials: true })
-      .then(res => { console.log(res) })
+  const handleClick = () => {
+    navigate('/registration')
   }
 
   return (
@@ -46,13 +46,12 @@ export default function LoginForm() {
             <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <Button className="logIn-btn" variant="contained" color="blue" size="large" type="submit">Log In</Button>
-          <Button className="logIn-btn" variant="contained" color="blue" size="large" onClick={test}>Test</Button>
         </Stack>
         <Stack direction="row" justifyContent="center" alignItems="center" mt={1}>
           <Typography className="test" variant="body2" color="white">
             No account yet?
           </Typography>
-          <Button sx={{ verticalAlign: "baseline" }} className="test2" variant="text" color="blue">Sign Up</Button>
+          <Button sx={{ verticalAlign: "baseline" }} className="test2" variant="text" color="blue" onClick={handleClick}>Sign Up</Button>
         </Stack>
       </Box>
     </>

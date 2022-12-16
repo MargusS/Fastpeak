@@ -4,9 +4,10 @@ import { Stack } from "@mui/system";
 import Typography from '@mui/material/Typography';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
-
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -24,8 +25,8 @@ export default function SignInForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    axios.post(`http://127.0.0.1:3000/users`, { user })
-      .then(console.log("ok"))
+    axios.post(`/api/users`, { user })
+      .then(navigate('/home'))
   };
 
   return (

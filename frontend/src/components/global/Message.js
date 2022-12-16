@@ -1,6 +1,5 @@
-import { Stack } from "@mui/system";
 import React from "react";
-import { Avatar, IconButton, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 
 export default function Message(props) {
   return (

@@ -1,9 +1,11 @@
-import { IconButton, Avatar, Typography, List, ListItem, Divider } from "@mui/material";
+import { Avatar, Typography, List, ListItem, } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 export default function ContactList() {
+    const navigate = useNavigate();
     const [contactListData, setContactListData] = useState({})
 
     useEffect(() => {
@@ -11,12 +13,12 @@ export default function ContactList() {
     }, []);
 
     const getData = () => {
-        axios.get(`http://127.0.0.1:3000/contacts?id=1`)
+        axios.get(`/api/contacts`)
             .then(res => setContactListData(res.data));
     };
 
     const handleClick = (contact) => {
-        console.log(contact)
+        navigate(`/newchat/${contact}`)
     }
 
     return (
