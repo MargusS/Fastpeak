@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require "action_cable/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -29,5 +30,6 @@ module API
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.action_cable.mount_path = '/cable'
   end
 end

@@ -1,6 +1,10 @@
 @use 'variables' as var;
 @use 'mixins' as mix;
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 *,
 *:before,
 *:after {

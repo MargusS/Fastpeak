@@ -4,13 +4,15 @@ import { Stack } from "@mui/system";
 import { Avatar, IconButton, Typography, Button } from "@mui/material";
 import BackgroundHeader from "../global/BackgroundHeader";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Message from "../global/Message";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
-
+import Message from "../global/Message";
+// import { createConsumer } from "@rails/actioncable"
 
 export default function Chat() {
+
+  const localID = localStorage.getItem('user_id')
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -19,22 +21,68 @@ export default function Chat() {
     chat: id,
   });
   const [chat, setChat] = useState({});
+  const messagesContainer = document.querySelector(".messages-body");
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://127.0.0.1:3000/cable')
+    ws.onopen = () => {
+      console.log("Connencted")
+
+      ws.send(
+        JSON.stringify({
+          command: "subscribe",
+          identifier: JSON.stringify({
+            channel: "ChatChannel",
+            id: id
+          }),
+        })
+      );
+    }
+
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      if (data.type === "ping") return;
+      if (data.type === "welcome") return;
+      if (data.type === "confirm_subscription") return;
+
+      const message = data.message;
+      // console.log("datahola", message);
+      updateChatData(message);
+    };
+  }, [chat])
 
   useEffect(() => {
     getChat();
+    console.log(localID)
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(chat).length !== 0) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }, [chat]);
 
   const getChat = () => {
     axios.get(`/api/chats/${id}`)
       .then(res => setChat(res.data))
+    // .then(updateChatData("as"))
   }
 
+  const updateChatData = (data) => {
+    // console.log("chat.messages", Array.from(chat.messages))
+    // console.log(typeof chat.messages)
+    // let otherChat = Object.assign(chat);
+    // console.log(otherChat)
+    // const aux = Object.assign(chat);
+    setChat({
+      ...chat,
+      messages: [...chat.messages, data]
+    })
+  };
+
   const handleSubmit = event => {
+    // console.log("el handleSubmit guapo")
+    // console.log(message)
     event.preventDefault();
-    console.log({ message })
     axios.post(`/api/messages`, { message })
-      .then(res => { console.log(res) })
-      .catch(err => { console.log(err) })
     setMessage({
       ...message,
       content: ""
@@ -50,6 +98,7 @@ export default function Chat() {
 
   return (
     <>
+      {/* {console.log(chat)} */}
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
       <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
         <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>
@@ -78,7 +127,7 @@ export default function Chat() {
               "" :
               Array.from(chat.messages).map((mess, i) => {
                 return (
-                  <Message key={i} type={mess.type} content={mess.content}></Message>
+                  <Message key={i} type={mess.user_id === localID ? "received" : "sent"} content={mess.content}></Message>
                 )
               })
           }
