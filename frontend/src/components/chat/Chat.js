@@ -12,8 +12,6 @@ import Message from "../global/Message";
 
 export default function Chat() {
 
-  const ws = new WebSocket('ws://127.0.0.1:3000/cable')
-
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -22,81 +20,67 @@ export default function Chat() {
     chat: id,
   });
   const [chat, setChat] = useState({});
-  // const [cable, setCable] = useState(null);
   const messagesContainer = document.querySelector(".messages-body");
 
-  ws.onopen = () => {
-    console.log("Connencted")
+  useEffect(() => {
+    const ws = new WebSocket('ws://127.0.0.1:3000/cable')
+    ws.onopen = () => {
+      console.log("Connencted")
 
-    ws.send(
-      JSON.stringify({
-        command: "subscribe",
-        identifier: JSON.stringify({
-          channel: "ChatChannel",
-        }),
-      })
-    );
-  }
+      ws.send(
+        JSON.stringify({
+          command: "subscribe",
+          identifier: JSON.stringify({
+            channel: "ChatChannel",
+            id: id
+          }),
+        })
+      );
+    }
 
-  ws.onmessage = (e) => {
-    const data = JSON.parse(e.data);
-    if (data.type === "ping") return;
-    if (data.type === "welcome") return;
-    if (data.type === "confirm_subscription") return;
-    console.log("test", e.data);
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      if (data.type === "ping") return;
+      if (data.type === "welcome") return;
+      if (data.type === "confirm_subscription") return;
 
-    const message = data.message;
-    console.log("datahola", message);
-    test("llegue");
-  };
+      const message = data.message;
+      // console.log("datahola", message);
+      updateChatData(message);
+    };
+  }, [chat])
 
   useEffect(() => {
     getChat();
-    // if (!cable) {
-    //   const cable = createConsumer('http://127.0.0.1:3000/cable');
-    //   setCable(cable);
-    // }
   }, []);
+
   useEffect(() => {
     if (Object.keys(chat).length !== 0) messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }, [chat]);
 
-  const test = (ms) => {
-    console.log(ms)
-  }
-
-  // useEffect(() => {
-  //   if (cable) {
-  //     const subscription = cable.subscriptions.create(
-  //       { channel: "ChatChannel" }, {
-  //       received: data => {
-  //         // setChat({ ...chat, data })
-  //         console.log(data)
-  //       }
-  //     });
-  //     return () => {
-  //       subscription.unsubscribe();
-  //     }
-  //   }
-  // }, [cable]);
-
   const getChat = () => {
     axios.get(`/api/chats/${id}`)
-      // .then(res => setChat(res.data))
-      .then(res => updateChat(res.data))
-    // .then(res => console.log(res.data))
+      .then(res => setChat(res.data))
+    // .then(updateChatData("as"))
   }
 
-  const updateChat = (data) => {
-    setChat(prev => prev = data)
+  const updateChatData = (data) => {
+    // console.log("chat.messages", Array.from(chat.messages))
+    // console.log(typeof chat.messages)
+    // let otherChat = Object.assign(chat);
+    // console.log(otherChat)
+    // const aux = Object.assign(chat);
+    setChat({
+      ...chat,
+      messages: [...chat.messages, data]
+    })
+    console.log("este es el data: ", data)
+    console.log("este es el chat: ", chat)
   };
 
-  // const mountCable = () => {
-  //   cable.subscriptions.create(
-  //     { channel: "ChatChannel", id: id })
-  // }
-
   const handleSubmit = event => {
+    // console.log("el handleSubmit guapo")
+    // console.log(message)
     event.preventDefault();
     axios.post(`/api/messages`, { message })
     setMessage({
@@ -114,6 +98,7 @@ export default function Chat() {
 
   return (
     <>
+      {/* {console.log(chat)} */}
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
       <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
         <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>

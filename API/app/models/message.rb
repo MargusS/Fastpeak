@@ -5,9 +5,14 @@ class Message < ApplicationRecord
   belongs_to :chat
 
   def broadcast_message
-     ActionCable.server.broadcast("ChatChannel", {
+     ActionCable.server.broadcast("ChatChannel_#{chat_id}", {
                                     id:,
-                                    content: 
+                                    content:,
+                                    user_id:,
+                                    chat_id:,
+                                    created_at:,
+                                    updated_at:,
+                                    type: "sent"
                                   })
   end
 end
