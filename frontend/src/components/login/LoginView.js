@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
-import LoginForm from "../global/LoginForm";
+import LoginForm from "./LoginForm";
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import BackgroundHeader from "../global/BackgroundHeader";
 

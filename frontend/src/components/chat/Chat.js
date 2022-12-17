@@ -7,7 +7,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
-import Message from "../global/Message";
+import Message from "./Message";
 
 export default function Chat() {
 
@@ -91,7 +91,7 @@ export default function Chat() {
           <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" component="label" size="large" onClick={() => navigate('/home')}>
             <ArrowBackIosNewIcon sx={{ width: "1.3em", height: "1.5em" }}></ArrowBackIosNewIcon>
           </IconButton>
-          <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }}></Avatar>
+          <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }} src="" alt=""></Avatar>
           <Stack className="chat-text-item">
             <Typography variant="h5">
               {

@@ -23,8 +23,11 @@ class ChatsController < ApplicationController
   def index
     @chatList = Chat.joins(:members).where(:members => {user_id: @current_user.id}).as_json(only: [:id,:name])
     @response = @chatList.map{|chat| 
-        @members = User.joins(:members).where(:members => {chat_id: chat['id']}).where.not(id: @current_user.id)
+        @members = User.joins(:members).where(:members => {chat_id: chat['id']}).where.not(id: @current_user.id).map{ |user|
+          UserSerializer.new(user).serializable_hash[:data][:attributes]
+        }
         {**chat, members: @members}
+        
     }
    
     render json: @response
@@ -32,7 +35,7 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id]).as_json(only: [:id,:name])
-    @members = User.joins(:members).where.not(id: @current_user.id).where(:members => {chat_id: params[:id]}).as_json(only: [:id,:username,:status])
+    @members = User.joins(:members).where.not(id: @current_user.id).where(:members => {chat_id: params[:id]}).map{|user| UserSerializer.new(user).serializable_hash[:data][:attributes]}
     @messages = Message.where(chat_id: params[:id])
     @response = {**@chat, members: @members, messages: @messages}
 

@@ -6,16 +6,25 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 
-export default function SignInForm() {
+export default function RegistrationForm() {
   const navigate = useNavigate()
   const [user, setUser] = useState({
     email: "",
     password: "",
     username: "",
     password_confirmation: "",
-    status: "active"
+    status: "active",
+    avatar: null
   });
 
+
+
+  const handleChangeAvatar = event => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.files[0]
+    })
+  }
   const handleChange = event => {
     setUser({
       ...user,
@@ -25,23 +34,44 @@ export default function SignInForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    axios.post(`/api/users`, { user })
-      .then(navigate('/home'))
+    const data = new FormData();
+
+    data.append("user[email]", user.email);
+    data.append("user[password]", user.password);
+    data.append("user[username]", user.username);
+    data.append("user[password_confirmation]", user.password_confirmation);
+    data.append("user[status]", user.status);
+    data.append("user[avatar]", user.avatar);
+    event.preventDefault();
+    axios.post(`/api/users`, data)
+      .then(res => {
+        localStorage.setItem('user_id', res.data.user.id)
+        localStorage.setItem('user_avatar', res.data.user.avatar_url)
+        navigate('/home')
+      })
   };
 
   return (
     <>
+      {console.log(user)}
       <Box component="form" onSubmit={handleSubmit}>
         <Stack direction="row" justifyContent="center" alignItems="center" spacing={4} sx={{ padding: "0 1em", margin: "1em 0", height: "40vh" }}>
           <Stack>
-            <Button variant="outlined" component="label" color="blue" sx={{ borderRadius: "50%", padding: "2em", minWidth: "inherit", width: "10em", height: "10em" }} >
+            <Button variant="outlined" component="label" color="blue" sx={{ borderRadius: "50%", padding: 0, minWidth: "inherit", width: "10em", height: "10em", overflow: "hidden" }} >
               <Stack justifyContent="center" alignItems="center" sx={{ '& .MuiStack-root': { alignItems: "center" }, rowGap: "1em" }}>
-                <AddPhotoAlternateIcon fontSize="large" />
-                <Typography variant="subtitle" align="center">
-                  Image Profile
-                </Typography>
+                {
+                  user.avatar === null ?
+                    <>
+                      <AddPhotoAlternateIcon fontSize="large" />
+                      <Typography variant="subtitle" align="center">
+                        Image Profile
+                      </Typography>
+                    </>
+                    :
+                    <img className="avatar" src={URL.createObjectURL(user.avatar)} alt="User Avatar"></img>
+                }
               </Stack>
-              <input hidden accept="image/*" multiple type="file" />
+              <input name="avatar" hidden accept="image/*" type="file" onChange={handleChangeAvatar} />
             </Button>
           </Stack>
           <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>

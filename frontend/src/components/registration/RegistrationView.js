@@ -2,11 +2,11 @@ import React from "react";
 import { Stack, Typography, IconButton } from "@mui/material";
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import BackgroundHeader from "../global/BackgroundHeader";
-import SignInForm from "../global/SignInForm";
+import RegistrationForm from "./RegistrationForm";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 
-export default function Registration() {
+export default function RegistrationView() {
 
   const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ export default function Registration() {
           </IconButton>
           <img src="/Logo.png" alt="Logo"></img>
         </Stack>
-        <SignInForm />
+        <RegistrationForm />
         <Stack className="footer" direction="row" justifyContent="center" alignItems="center">
           <Typography className="logo-name" variant="body1" gutterBottom>
             FASTPEAK

@@ -8,6 +8,7 @@
     width: 100vw;
     height: 50px;
     border-radius: 100% 0% 0;
+    overflow: hidden;
 }
 
 .contact-list {
@@ -17,6 +18,12 @@
 .expanded-menu {
     height: 550px;
     border-radius: 30% 0 0;
+
+    .new-contact {
+        // background-color: var.$orange;
+        // text-align: center;
+        // margin: 0 auto;
+    }
 }
 
 .menu-controller-btn-expanded {

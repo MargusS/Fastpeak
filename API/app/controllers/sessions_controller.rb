@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
         render json: {
           status: :created,
           logged_in: true,
-          user: @user,
-          cookies: cookies
+          user:  UserSerializer.new(@user).serializable_hash[:data][:attributes]
+          #
         }
       else
         render json: { status: 404 }, status: 404 and return

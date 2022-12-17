@@ -3,7 +3,7 @@ import { Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
-import ChatOption from "./ChatOption";
+import DeleteChat from "../global/DeleteChat";
 
 export default function ChatList() {
 
@@ -68,7 +68,7 @@ export default function ChatList() {
 
     return (
         <List className="chat-list" sx={{ padding: 0, paddingTop: "8vh" }}>
-
+            {console.log(chatListData)}
             {
                 Array.from(chatListData).map((chat, i) => {
                     return (
@@ -84,7 +84,7 @@ export default function ChatList() {
                                     </Typography>
                                 </Stack>
                             </Stack>
-                            <ChatOption chatID={chat.id} chatDelete={handleChatDelete}></ChatOption>
+                            <DeleteChat chatID={chat.id} chatDelete={handleChatDelete}></DeleteChat>
                             {/* <Divider></Divider> */}
                         </ListItem >
                     )

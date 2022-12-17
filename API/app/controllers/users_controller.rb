@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def create
-    @user = User.create!(email: params['user']['email'],username: params['user']['username'],password: params['user']['password'],password_confirmation: params['user']['password_confirmation'],status: params['user']['status'])
+    @user = User.create!(user_params)
 
     if @user
       session[:user_id] = @user.id
@@ -11,5 +11,9 @@ class UsersController < ApplicationController
     else
       render json: {status: 500}
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:email,:username,:password,:password_confirmation,:status,:avatar)
   end
 end
