@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { Avatar, IconButton, Typography, Button } from "@mui/material";
@@ -8,31 +8,47 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 import Message from "../global/Message";
-// import { createConsumer } from "@rails/actioncable"
 
 export default function Chat() {
 
+  const localID = localStorage.getItem('user_id')
+
   const navigate = useNavigate();
   const { id } = useParams();
+  const idMemo = useMemo(() => { return id }, [id]);
 
   const [message, setMessage] = useState({
     content: "",
     chat: id,
   });
   const [chat, setChat] = useState({});
-  const messagesContainer = document.querySelector(".messages-body");
+
+  useEffect(() => {
+    axios.get(`/api/chats/${idMemo}`)
+      .then(res => setChat(res.data))
+  }, [idMemo]);
+
+  useEffect(() => {
+    const messagesContainer = document.querySelector(".messages-body");
+    if (Object.keys(chat).length !== 0) messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }, [chat]);
+
+  const updateChatData = (data) => {
+    setChat({
+      ...chat,
+      messages: [...chat.messages, data]
+    })
+  };
 
   useEffect(() => {
     const ws = new WebSocket('ws://127.0.0.1:3000/cable')
     ws.onopen = () => {
-      console.log("Connencted")
-
       ws.send(
         JSON.stringify({
           command: "subscribe",
           identifier: JSON.stringify({
             channel: "ChatChannel",
-            id: id
+            id: idMemo
           }),
         })
       );
@@ -40,47 +56,17 @@ export default function Chat() {
 
     ws.onmessage = (e) => {
       const data = JSON.parse(e.data);
+      if (Object.keys(chat).length === 0) return
       if (data.type === "ping") return;
       if (data.type === "welcome") return;
       if (data.type === "confirm_subscription") return;
 
       const message = data.message;
-      // console.log("datahola", message);
       updateChatData(message);
     };
-  }, [chat])
-
-  useEffect(() => {
-    getChat();
-  }, []);
-
-  useEffect(() => {
-    if (Object.keys(chat).length !== 0) messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }, [chat]);
-
-  const getChat = () => {
-    axios.get(`/api/chats/${id}`)
-      .then(res => setChat(res.data))
-    // .then(updateChatData("as"))
-  }
-
-  const updateChatData = (data) => {
-    // console.log("chat.messages", Array.from(chat.messages))
-    // console.log(typeof chat.messages)
-    // let otherChat = Object.assign(chat);
-    // console.log(otherChat)
-    // const aux = Object.assign(chat);
-    setChat({
-      ...chat,
-      messages: [...chat.messages, data]
-    })
-    console.log("este es el data: ", data)
-    console.log("este es el chat: ", chat)
-  };
+  }, [chat, idMemo])
 
   const handleSubmit = event => {
-    // console.log("el handleSubmit guapo")
-    // console.log(message)
     event.preventDefault();
     axios.post(`/api/messages`, { message })
     setMessage({
@@ -127,7 +113,7 @@ export default function Chat() {
               "" :
               Array.from(chat.messages).map((mess, i) => {
                 return (
-                  <Message key={i} type={mess.type} content={mess.content}></Message>
+                  <Message key={i} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
                 )
               })
           }

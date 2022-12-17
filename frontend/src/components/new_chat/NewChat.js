@@ -30,7 +30,9 @@ export default function NewChat() {
     axios(`/api/users/${id}`)
       .then(res => {
         setUser({
-          ...user, name: res.data.username, status: res.data.status
+          ...user,
+          name: res.data.username,
+          status: res.data.status
         })
       })
   }

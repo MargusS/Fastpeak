@@ -8,16 +8,52 @@ import ChatOption from "./ChatOption";
 export default function ChatList() {
 
     const navigate = useNavigate();
-    const [chatListData, setChatListData] = useState({})
+    const [chatListData, setChatListData] = useState([])
 
     useEffect(() => {
-        getData();
+        axios.get(`/api/chats`)
+            .then(res => {
+                setChatListData(res.data)
+            });
     }, []);
 
-    const getData = () => {
-        axios.get(`/api/chats`)
-            .then(res => setChatListData(res.data));
+    const updateListData = (data, op) => {
+        if (op === "create") {
+            setChatListData([
+                data,
+                ...chatListData
+            ])
+        }
+        if (op === "destroy") {
+            setChatListData(prev => prev.filter(chatList => { return chatList.id !== data.id }))
+        }
+
     };
+
+    useEffect(() => {
+        const ws = new WebSocket('ws://127.0.0.1:3000/cable')
+        ws.onopen = () => {
+            ws.send(
+                JSON.stringify({
+                    command: "subscribe",
+                    identifier: JSON.stringify({
+                        channel: "ListChannel",
+                    }),
+                })
+            );
+        }
+
+        ws.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            // if (Object.keys(chat).length === 0) return
+            if (data.type === "ping") return;
+            if (data.type === "welcome") return;
+            if (data.type === "confirm_subscription") return;
+
+            const message = data.message;
+            updateListData(message, message.type);
+        };
+    }, [chatListData])
 
     const handleChatClick = (chat) => {
         navigate(`/chat/${chat}`)
@@ -26,12 +62,13 @@ export default function ChatList() {
     const handleChatDelete = (id) => {
         axios.delete(`/api/chats/${id}`)
             .then(() => {
-                setChatListData(current => current.filter(chatList => { return chatList.id !== id }))
+                setChatListData(prev => prev.filter(chatList => { return chatList.id !== id }))
             })
     }
 
     return (
         <List className="chat-list" sx={{ padding: 0, paddingTop: "8vh" }}>
+
             {
                 Array.from(chatListData).map((chat, i) => {
                     return (
