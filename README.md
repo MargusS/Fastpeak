@@ -1,22 +1,95 @@
 # Fastpeak
 
-Simple overview of use/purpose.
+Fastpeak is a proyect oriented to be the chat of https://eduapp-project.eu/ 
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+### Improving educational commnication
+
+Fastpeak is a chat app designed to improve communication between teachers and students. It offers a secure and convenient platform for educators and learners to connect and collaborate in real time. With Fastpeak, teachers can easily send messages and materials to their students, track progress, and provide feedback on assignments. Students can use Fastpeak to ask questions, get help with coursework, and stay up to date on class announcements. Fastpeak's user-friendly interface and powerful features make it an essential tool for education in the 21st century.
 
 ## Getting Started
 
-### Dependencies
+### Installing & Executing program
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+Open a terminal window and navigate to the directory where you want to store the project.
 
-### Installing
+**1.** Use the git clone command to download the project from GitHub to your local machine.
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+```
+git clone https://github.com/MargusS/Fastpeak.git
+```
+
+**2.** Navigate to the project directory:
+
+```
+cd Fastpeak 
+```
+
+To set up the Rails backend, you will need to have Ruby, Rails and Postgres installed on your machine. 
+
+ **3.** Navigate to the server directory of the project:
+
+```
+cd Fastpeak/API
+```
+
+ **4.** In the server directory, you should find a Gemfile that lists the dependencies for the Rails app. To install these dependencies, use the bundle install command:
+
+```
+bundle install
+```
+ **5.** Before set up the database, you need to config the file'config/database.yml'
+
+```
+username: [postgres server username]
+password: [postgres server password
+port: [postgres port]
+```
+
+ **6.** Create the database with: 
+
+```
+rails db:create
+```
+
+  **7.** Once you database has been created, you should migrate the ORM Database:
+
+```
+rails db:migrate
+```
+
+ **8.** To start the Rails server, use the rails s command:
+
+```
+rails s
+```
+
+This should start the Rails server, now you need to set up the frontend.
+
+  **9** Go to frontend directory:
+
+```
+cd Fastpeak/frontend 
+```
+
+  **10.** You should find a package.json file. This file lists the dependencies for the frontend of the project. To install these dependencies, use the npm install or yarn install command, depending on which package manager you are using:
+
+```
+npm install 
+```
+```
+yarn install 
+```
+
+  **11.** Now that the frontend dependencies are installed, you can start the development server for the React app. To do this, you can use the npm start or yarn start command, depending on your package manager:
+
+```
+npm run start
+```
+
+This should start the development server for the React app and you should now be able to access the backend API from the React frontend.
+
 
 ## Data Model
 
@@ -27,7 +100,7 @@ An in-depth paragraph about your project and overview of use.
 ![Relational Diagram Fastpeak drawio](https://user-images.githubusercontent.com/83511656/208489868-d19eb849-f1fe-40df-b30e-cc33225e3fdd.png)
 
 ### UML Diagram
-Diagram![ERD Fastpeak](https://user-images.githubusercontent.com/83511656/208486834-5f31642d-6a56-4566-b1a0-8a3464442251.PNG)
+![ERD Fastpeak](https://user-images.githubusercontent.com/83511656/208486834-5f31642d-6a56-4566-b1a0-8a3464442251.PNG)
 
 ### Entities and attributes explained
 
@@ -69,13 +142,8 @@ Table that represent the reflesive relationship between users.
 * friend_id: The foreign key that represent the friend of the user.
 
 
-### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+
 
 ## Help
 
