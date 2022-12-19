@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     delete :logout, to: "sessions#logout"
     get :logged_in, to: "application#logged_in"
     get :current, to: "sessions#get_current"
+    get :show_by_email, to: "users#show_by_email"
     root to: 'application#home'
   end
 end

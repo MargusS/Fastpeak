@@ -84,7 +84,6 @@ export default function Chat() {
 
   return (
     <>
-      {/* {console.log(chat)} */}
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
       <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
         <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>

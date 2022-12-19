@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Chat from "./components/chat/Chat";
 import NewChat from "./components/new_chat/NewChat";
 import RegistrationView from "./components/registration/RegistrationView";
+import NewContactView from "./components/new_contact/NewContactView";
 
 const theme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/chat/:id" element={< Chat />} />
           <Route path="/newchat/:id" element={< NewChat />} />
           <Route path="/registration" element={< RegistrationView />} />
+          <Route path="/newcontact" element={< NewContactView />} />
           <Route path="/" element={< LoginView />} />
         </Routes>
       </Router>

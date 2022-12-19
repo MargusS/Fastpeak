@@ -45,6 +45,7 @@ export default function RegistrationForm() {
     event.preventDefault();
     axios.post(`/api/users`, data)
       .then(res => {
+        console.log(res)
         localStorage.setItem('user_id', res.data.user.id)
         localStorage.setItem('user_avatar', res.data.user.avatar_url)
         navigate('/home')
@@ -52,51 +53,48 @@ export default function RegistrationForm() {
   };
 
   return (
-    <>
-      {console.log(user)}
-      <Box component="form" onSubmit={handleSubmit}>
-        <Stack direction="row" justifyContent="center" alignItems="center" spacing={4} sx={{ padding: "0 1em", margin: "1em 0", height: "40vh" }}>
-          <Stack>
-            <Button variant="outlined" component="label" color="blue" sx={{ borderRadius: "50%", padding: 0, minWidth: "inherit", width: "10em", height: "10em", overflow: "hidden" }} >
-              <Stack justifyContent="center" alignItems="center" sx={{ '& .MuiStack-root': { alignItems: "center" }, rowGap: "1em" }}>
-                {
-                  user.avatar === null ?
-                    <>
-                      <AddPhotoAlternateIcon fontSize="large" />
-                      <Typography variant="subtitle" align="center">
-                        Image Profile
-                      </Typography>
-                    </>
-                    :
-                    <img className="avatar" src={URL.createObjectURL(user.avatar)} alt="User Avatar"></img>
-                }
-              </Stack>
-              <input name="avatar" hidden accept="image/*" type="file" onChange={handleChangeAvatar} />
-            </Button>
-          </Stack>
-          <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>
-            <FormControl variant="standard" color="blue" >
-              <InputLabel htmlFor="username" >Username</InputLabel>
-              <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} />
-            </FormControl>
-            <FormControl variant="standard" color="blue">
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
-            </FormControl>
-            <FormControl variant="standard" color="blue">
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
-            </FormControl>
-            <FormControl variant="standard" color="blue">
-              <InputLabel htmlFor="password_confirmation">Repeat Password</InputLabel>
-              <Input id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
-            </FormControl>
-          </Stack>
-        </Stack>
+    <Box component="form" onSubmit={handleSubmit}>
+      <Stack direction="row" justifyContent="center" alignItems="center" spacing={4} sx={{ padding: "0 1em", margin: "1em 0", height: "40vh" }}>
         <Stack>
-          <Button sx={{ margin: "0 auto" }} variant="contained" color="blue" size="large" type="submit">Sign In</Button>
+          <Button variant="outlined" component="label" color="blue" sx={{ borderRadius: "50%", padding: 0, minWidth: "inherit", width: "10em", height: "10em", overflow: "hidden" }} >
+            <Stack justifyContent="center" alignItems="center" sx={{ '& .MuiStack-root': { alignItems: "center" }, rowGap: "1em" }}>
+              {
+                user.avatar === null ?
+                  <>
+                    <AddPhotoAlternateIcon fontSize="large" />
+                    <Typography variant="subtitle" align="center">
+                      Image Profile
+                    </Typography>
+                  </>
+                  :
+                  <img className="avatar" src={URL.createObjectURL(user.avatar)} alt="User Avatar"></img>
+              }
+            </Stack>
+            <input name="avatar" hidden accept="image/*" type="file" onChange={handleChangeAvatar} />
+          </Button>
         </Stack>
-      </Box>
-    </>
+        <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>
+          <FormControl variant="standard" color="blue" >
+            <InputLabel htmlFor="username" >Username</InputLabel>
+            <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} />
+          </FormControl>
+          <FormControl variant="standard" color="blue">
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
+          </FormControl>
+          <FormControl variant="standard" color="blue">
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+          </FormControl>
+          <FormControl variant="standard" color="blue">
+            <InputLabel htmlFor="password_confirmation">Repeat Password</InputLabel>
+            <Input id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
+          </FormControl>
+        </Stack>
+      </Stack>
+      <Stack>
+        <Button sx={{ margin: "0 auto" }} variant="contained" color="blue" size="large" type="submit">Sign In</Button>
+      </Stack>
+    </Box>
   )
 }

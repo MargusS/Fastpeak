@@ -45,7 +45,6 @@ export default function ChatList() {
 
         ws.onmessage = (e) => {
             const data = JSON.parse(e.data);
-            // if (Object.keys(chat).length === 0) return
             if (data.type === "ping") return;
             if (data.type === "welcome") return;
             if (data.type === "confirm_subscription") return;
@@ -68,7 +67,6 @@ export default function ChatList() {
 
     return (
         <List className="chat-list" sx={{ padding: 0, paddingTop: "8vh" }}>
-            {console.log(chatListData)}
             {
                 Array.from(chatListData).map((chat, i) => {
                     return (
