@@ -9,7 +9,10 @@ class ContactsController < ApplicationController
 
     def index
         @contacts = Contact.where(user_id: @current_user.id)
-        @response = @contacts.map{|friend| User.find(friend.friend_id)}
+        @response = @contacts.map{|friend| 
+           user = User.find(friend.friend_id)
+           UserSerializer.new(user).serializable_hash[:data][:attributes]
+        }
         render json: @response
     end 
 

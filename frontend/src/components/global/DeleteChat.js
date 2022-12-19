@@ -31,7 +31,6 @@ export default function DeleteChat({ chatID, chatDelete }) {
     if (event.target.name === "confirm") {
       chatDelete(chatID)
     }
-
   };
 
   const onDelete = (event) => {

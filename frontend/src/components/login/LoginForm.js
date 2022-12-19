@@ -23,7 +23,6 @@ export default function LoginForm() {
     event.preventDefault();
     axios.post(`/api/sessions`, { user }, { withCredentials: true })
       .then(res => {
-        console.log(res)
         localStorage.setItem('user_id', res.data.user.id)
         localStorage.setItem('user_avatar', res.data.user.avatar_url)
         navigate('/home')

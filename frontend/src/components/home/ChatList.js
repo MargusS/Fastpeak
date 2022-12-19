@@ -61,7 +61,9 @@ export default function ChatList() {
     const handleChatDelete = (id) => {
         axios.delete(`/api/chats/${id}`)
             .then(() => {
-                setChatListData(prev => prev.filter(chatList => { return chatList.id !== id }))
+                setChatListData(prev =>
+                    prev.filter(chatList => { return chatList.id !== id })
+                )
             })
     }
 
@@ -72,7 +74,7 @@ export default function ChatList() {
                     return (
                         <ListItem key={i} className="chat" direction="row" justifyContent="space-around" alignItems="center" onClick={() => handleChatClick(chat.id)}>
                             <Stack className="chat-items" direction="row" alignItems="center">
-                                <Avatar sx={{ width: 50, height: 50 }}></Avatar>
+                                <Avatar sx={{ width: 50, height: 50 }} src={chat.members[0]['avatar_url']} alt="Avatar"></Avatar>
                                 <Stack className="chat-text-item">
                                     <Typography variant="h5">
                                         {chat.members[0]['username']}
@@ -83,7 +85,6 @@ export default function ChatList() {
                                 </Stack>
                             </Stack>
                             <DeleteChat chatID={chat.id} chatDelete={handleChatDelete}></DeleteChat>
-                            {/* <Divider></Divider> */}
                         </ListItem >
                     )
                 })

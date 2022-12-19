@@ -90,7 +90,7 @@ export default function Chat() {
           <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" component="label" size="large" onClick={() => navigate('/home')}>
             <ArrowBackIosNewIcon sx={{ width: "1.3em", height: "1.5em" }}></ArrowBackIosNewIcon>
           </IconButton>
-          <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }} src="" alt=""></Avatar>
+          <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }} src={chat.members[0].avatar_url} alt="avatar"></Avatar>
           <Stack className="chat-text-item">
             <Typography variant="h5">
               {

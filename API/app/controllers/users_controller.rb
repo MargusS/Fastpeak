@@ -16,6 +16,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if @current_user.id = params[:id]
+      @user = User.find(params[:id])
+      @user.update(user_params)
+    end
+    render json: @user
+  end 
+
+  def show
+      @user = User.find(params[:id])
+      render json: {user: UserSerializer.new(@user).serializable_hash[:data][:attributes]}
+  end
+
   def show_by_email
     if params[:user][:email] != @current_user.email 
       @user = User.where(user_params)
@@ -26,6 +39,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email,:username,:password,:password_confirmation,:status,:avatar)
+    params.require(:user).permit(:id,:email,:username,:password,:password_confirmation,:status,:avatar)
   end
 end
