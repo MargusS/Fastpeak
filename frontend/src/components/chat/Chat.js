@@ -85,45 +85,50 @@ export default function Chat() {
   return (
     <>
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
-      <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
-        <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>
-          <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" component="label" size="large" onClick={() => navigate('/home')}>
-            <ArrowBackIosNewIcon sx={{ width: "1.3em", height: "1.5em" }}></ArrowBackIosNewIcon>
-          </IconButton>
-          <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }} src={chat.members[0].avatar_url} alt="avatar"></Avatar>
-          <Stack className="chat-text-item">
-            <Typography variant="h5">
-              {
-                Object.keys(chat).length === 0 ? "user" : chat.members[0]['username']
-              }
-            </Typography>
-            <Typography variant="body1">
-              {
-                Object.keys(chat).length === 0 ? "" : chat.members[0]['status']
-              }
-            </Typography>
-          </Stack>
-        </Stack>
-      </Stack>
-      <Stack className="conversation">
-        <Stack className="messages-body">
-          {
-            Object.keys(chat).length === 0 ?
-              "" :
-              Array.from(chat.messages).map((mess, i) => {
-                return (
-                  <Message key={i} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
-                )
-              })
-          }
-        </Stack>
-        <Stack component="form" onSubmit={handleSubmit} direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
-          <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="content" onChange={handleChange} value={message.content} />
-          <Button variant="contained" color="blue" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} size="large" type="submit">
-            <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
-          </Button>
-        </Stack>
-      </Stack>
+      {
+        Object.keys(chat).length !== 0 ?
+          <>
+            <Stack className="header-chat" justifyContent="center" alignItems="start" sx={{ paddingLeft: "1em" }}>
+              <Stack direction="row" justifyContent="center" alignItems="center" sx={{ padding: "1em" }}>
+                <IconButton sx={{ color: "#000", padding: 0 }} className="logOut-btn" component="label" size="large" onClick={() => navigate('/home')}>
+                  <ArrowBackIosNewIcon sx={{ width: "1.3em", height: "1.5em" }}></ArrowBackIosNewIcon>
+                </IconButton>
+                <Avatar sx={{ width: 50, height: 50, margin: "0 .5em" }} src={chat.members[0]['avatar_url']} alt="avatar"></Avatar>
+                <Stack className="chat-text-item">
+                  <Typography variant="h5">
+                    {
+                      chat.members[0]['username']
+                    }
+                  </Typography>
+                  <Typography variant="body1">
+                    {
+                      chat.members[0]['status']
+                    }
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Stack>
+            <Stack className="conversation">
+              <Stack className="messages-body">
+                {
+                  Array.from(chat.messages).map((mess, i) => {
+                    return (
+                      <Message key={i} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
+                    )
+                  })
+                }
+              </Stack>
+              <Stack component="form" onSubmit={handleSubmit} direction="row" justifyContent="center" alignItems="center" sx={{ '& .MuiTextField-root': { m: 1, width: '80%' }, height: "10%", columnGap: ".2em", padding: ".5em" }} noValidate autoComplete="off">
+                <TextField sx={{ '& .MuiInputBase-root': { padding: ".5em", borderRadius: "16px 16px", border: "1px solid gray" }, '& .MuiOutlinedInput-notchedOutline': { display: "none" } }} id="outlined-multiline-flexible" multiline maxRows={2} name="content" onChange={handleChange} value={message.content} />
+                <Button variant="contained" color="blue" sx={{ borderRadius: "40%", padding: ".2em", minWidth: 50, height: 45 }} size="large" type="submit">
+                  <SendRoundedIcon fontSize="medium"></SendRoundedIcon>
+                </Button>
+              </Stack>
+            </Stack>
+          </>
+          :
+          ""
+      }
     </>
   )
 }
