@@ -24,7 +24,7 @@ An in-depth paragraph about your project and overview of use.
 ![Chat Project drawio](https://user-images.githubusercontent.com/83511656/208487216-a545c6c7-28c5-49af-986b-b9afe846849e.png)
 
 ### Relational Diagram
-![Chat Project drawio](https://user-images.githubusercontent.com/83511656/208487272-14c63dcb-7c7d-4c2b-a265-cc5d9bc80247.png)
+![Relational Diagram Fastpeak drawio](https://user-images.githubusercontent.com/83511656/208489868-d19eb849-f1fe-40df-b30e-cc33225e3fdd.png)
 
 ### UML Diagram
 Diagram![ERD Fastpeak](https://user-images.githubusercontent.com/83511656/208486834-5f31642d-6a56-4566-b1a0-8a3464442251.PNG)
