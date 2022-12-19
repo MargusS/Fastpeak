@@ -34,9 +34,10 @@ export default function Chat() {
   }, [chat]);
 
   const updateChatData = (data) => {
+    console.log(chat);
     setChat({
       ...chat,
-      messages: [...chat.messages, data]
+      messages: [...chat.messages, { ...data }]
     })
   };
 
@@ -64,7 +65,7 @@ export default function Chat() {
       const message = data.message;
       updateChatData(message);
     };
-  }, [chat, idMemo])
+  }, [idMemo])
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -85,6 +86,7 @@ export default function Chat() {
   return (
     <>
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
+
       {
         Object.keys(chat).length !== 0 ?
           <>
@@ -113,7 +115,7 @@ export default function Chat() {
                 {
                   Array.from(chat.messages).map((mess, i) => {
                     return (
-                      <Message key={i} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
+                      <Message key={mess.id} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
                     )
                   })
                 }

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   
   def create
     # reset_cookies
-    unless @current_user
+    # debugger
       @user = User.find_by(email: params["user"]["email"]).try(:authenticate, params["user"]["password"])
 
       if @user
@@ -18,7 +18,6 @@ class SessionsController < ApplicationController
       else
         render json: { status: 404 }, status: 404 and return
       end
-    end
   end
 
   def get_current

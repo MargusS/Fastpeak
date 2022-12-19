@@ -12,6 +12,7 @@ class Message < ApplicationRecord
                                     chat_id:,
                                     created_at:,
                                     updated_at:,
+                                    type: 
                                   })
   end
 end
