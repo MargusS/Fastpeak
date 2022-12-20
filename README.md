@@ -141,41 +141,58 @@ Table that represent the reflesive relationship between users.
 * user_id: The foreign key that represent the user.
 * friend_id: The foreign key that represent the friend of the user.
 
+## Use cases
+![diagrama casos de uso](https://user-images.githubusercontent.com/56371021/208329978-29a8def0-6bee-4ff3-9f60-0a5a108ba3d5.png)
 
+As we can see, the admin has full control of all the CRUDS while the average user of the app will only be able to see the information.
 
+## Prototype
 
+Fastpeak's Figma prototype helps me validate ideas and communicate my vision and goals to others. I hope it gives you a good mental outline of the project.
 
-## Help
+[Figma Prototype]https://www.figma.com/file/dYxevTKjXoHADpOo6x22tN/Fastpeak?node-id=0%3A1&t=ZS2Rve4QmuIQZINB-0
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+## Tecnhology stack comparison
+#### Rails 
+Ruby on Rails, often simply called Rails, is a web application framework written in the Ruby programming language. It is designed to make it easier for developers to build and deploy web applications quickly.
+There are many other programming languages and frameworks that can be used for building web applications, each with its own strengths and use cases. Some popular alternatives to Rails include:
 
-## Authors
+ - Django: Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. It is well-suited for building complex, data-driven applications, and is used by many large websites, including Instagram and Pinterest.
+ 
+ - Laravel: Laravel is a popular PHP web framework that is designed to be easy to use and expressive. It includes a wide range of features for building web applications, including routing, authentication, and a powerful object-relational mapper (ORM).
+ 
+ - ASP.NET: ASP.NET is a web framework developed by Microsoft for building web applications using the .NET framework. It supports multiple programming languages, including C# and VB.NET, and is well-suited for building enterprise-grade applications.
+ 
+Again, the best language or framework for your project will depend on your specific needs and requirements. It's worth considering a few different options and evaluating their pros and cons before making a decision
 
-Contributors names and contact info
+#### React
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+React is a JavaScript library for building user interfaces. It was developed by Facebook, and is often used for building single-page applications and mobile applications.
+There are many other JavaScript libraries and frameworks for building user interfaces, each with its own strengths and use cases. Some popular alternatives to React include:
+ - Angular: Angular is a full-featured framework for building web applications. It includes a powerful set of features for building both the frontend and backend of an application, and is well-suited for building complex, data-driven applications.
+ 
+ - Vue.js: Vue.js is a lightweight, easy-to-learn JavaScript framework for building user interfaces. It's known for its simplicity and flexibility, and is often used for building small- to medium-sized applications.
+ 
+ - Preact: Preact is a lightweight alternative to React that is designed to be fast and easy to use. It has a small footprint and is well-suited for building high-performance applications.
+ 
+Ultimately, the best library or framework for your project will depend on your specific needs and requirements. It's worth considering a few different options and evaluating their pros and cons before making a decision.
 
-## Version History
+## Author
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+Agustin Nicolas Marani Ghiacci.
 
-## License
+## Built With
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+* [Figma](https://www.figma.com/)
+* [Visual StudioCode](https://code.visualstudio.com/) - The Editor used in this project.
+* [React](https://es.reactjs.org/) - A JavaScript library for building user interfaces.
+* [Rails](https://rubyonrails.org/) - an open source framework for Web development in Ruby, an object-oriented programming (OOP) language
+* [SASS](https://sass-lang.com/) - An extension of CSS that enables you to use things like variables, nested rules, inline imports and more.
+* [Postgres](https://www.postgresql.org/) - The World's Most Advanced Open Source Relational Database
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [Miguel Ángel Figueroa - Interface Development Professor](https://github.com/mianfiga)
+* [Tiburcio Cruz - FullStack Development Professor](https://github.com/tcrurav)
+* [Dean DeHart - Online Tech Teach](https://github.com/Deanout)
+
