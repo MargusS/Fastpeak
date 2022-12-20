@@ -109,11 +109,11 @@ export default function AccountForm() {
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">New Password</InputLabel>
-            <Input minlength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+            <Input minLength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password_confirmation">Repeat New Password</InputLabel>
-            <Input minlength="6" id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
+            <Input minLength="6" id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
           </FormControl>
         </Stack>
       </Stack>

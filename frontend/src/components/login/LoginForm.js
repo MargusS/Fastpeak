@@ -44,7 +44,7 @@ export default function LoginForm() {
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input required minlength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+            <Input required minLength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <Button className="logIn-btn" variant="contained" color="blue" size="large" type="submit">Log In</Button>
         </Stack>

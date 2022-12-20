@@ -73,7 +73,7 @@ export default function RegistrationForm() {
         <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>
           <FormControl variant="standard" color="blue" >
             <InputLabel htmlFor="username" >Username</InputLabel>
-            <Input required minlength="4" maxLength="15" id="username" name="username" type="text" onChange={handleChange} value={user.username} />
+            <Input required minLength="4" maxLength="15" id="username" name="username" type="text" onChange={handleChange} value={user.username} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="email">Email</InputLabel>
@@ -81,11 +81,11 @@ export default function RegistrationForm() {
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input required minlength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+            <Input required minLength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password_confirmation">Repeat Password</InputLabel>
-            <Input required minlength="6" id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
+            <Input required minLength="6" id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
           </FormControl>
         </Stack>
       </Stack>
