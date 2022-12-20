@@ -40,11 +40,11 @@ export default function LoginForm() {
         <Stack spacing={3} justifyContent="center" alignItems="center">
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
+            <Input required id="email" name="email" type="email" onChange={handleChange} value={user.email} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+            <Input required minlength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <Button className="logIn-btn" variant="contained" color="blue" size="large" type="submit">Log In</Button>
         </Stack>

@@ -67,25 +67,25 @@ export default function RegistrationForm() {
                   <img className="avatar" src={URL.createObjectURL(user.avatar)} alt="User Avatar"></img>
               }
             </Stack>
-            <input name="avatar" hidden accept="image/*" type="file" onChange={handleChangeAvatar} />
+            <input required name="avatar" hidden accept="image/*" type="file" onChange={handleChangeAvatar} />
           </Button>
         </Stack>
         <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>
           <FormControl variant="standard" color="blue" >
             <InputLabel htmlFor="username" >Username</InputLabel>
-            <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} />
+            <Input required minlength="4" maxLength="15" id="username" name="username" type="text" onChange={handleChange} value={user.username} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
+            <Input required id="email" name="email" type="email" onChange={handleChange} value={user.email} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+            <Input required minlength="6" id="password" name="password" type="password" onChange={handleChange} value={user.password} />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password_confirmation">Repeat Password</InputLabel>
-            <Input id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
+            <Input required minlength="6" id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
           </FormControl>
         </Stack>
       </Stack>

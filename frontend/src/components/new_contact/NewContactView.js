@@ -56,7 +56,7 @@ export default function NewContactView() {
         <Stack alignItems="center" spacing={3}>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
+            <Input required id="email" name="email" type="email" onChange={handleChange} value={user.email} />
           </FormControl>
           <Button className="logIn-btn" variant="contained" color="blue" type="submit" onClick={handleClickSearch}>
             Search
