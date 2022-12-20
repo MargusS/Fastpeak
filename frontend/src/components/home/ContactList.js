@@ -34,8 +34,8 @@ export default function ContactList() {
                 {
                     Array.from(contactListData).map((contact, i) => {
                         return (
-                            <Stack key={i}>
-                                <ListItem className="contact" direction="row" justifyContent="space-around" alignItems="center" onClick={() => navigate(`/newchat/${contact.id}`)}>
+                            <Stack key={contact.id}>
+                                <ListItem className="contact" direction="row" justify="space-around" alignItems="center" onClick={() => navigate(`/newchat/${contact.id}`)}>
                                     <Stack className="chat-items" direction="row" alignItems="center">
                                         <Avatar sx={{ width: 50, height: 50 }} src={contact.avatar_url}></Avatar>
                                         <Stack className="chat-text-item">

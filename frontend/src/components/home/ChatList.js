@@ -72,7 +72,7 @@ export default function ChatList() {
             {
                 Array.from(chatListData).map((chat, i) => {
                     return (
-                        <ListItem key={i} className="chat" direction="row" justifyContent="space-around" alignItems="center" onClick={() => handleChatClick(chat.id)}>
+                        <ListItem key={chat.id} className="chat" direction="row" justify="space-around" alignItems="center" onClick={() => handleChatClick(chat.id)}>
                             <Stack className="chat-items" direction="row" alignItems="center">
                                 <Avatar sx={{ width: 50, height: 50 }} src={chat.members[0]['avatar_url']} alt="Avatar"></Avatar>
                                 <Stack className="chat-text-item">

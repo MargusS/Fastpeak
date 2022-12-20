@@ -17,8 +17,6 @@ export default function RegistrationForm() {
     avatar: null
   });
 
-
-
   const handleChangeAvatar = event => {
     setUser({
       ...user,
@@ -42,10 +40,9 @@ export default function RegistrationForm() {
     data.append("user[password_confirmation]", user.password_confirmation);
     data.append("user[status]", user.status);
     data.append("user[avatar]", user.avatar);
-    event.preventDefault();
+    console.log(data)
     axios.post(`/api/users`, data)
       .then(res => {
-        console.log(res)
         localStorage.setItem('user_id', res.data.user.id)
         localStorage.setItem('user_avatar', res.data.user.avatar_url)
         navigate('/home')
