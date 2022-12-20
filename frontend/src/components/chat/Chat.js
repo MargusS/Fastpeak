@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { Avatar, IconButton, Typography, Button } from "@mui/material";
@@ -16,12 +16,15 @@ export default function Chat() {
   const navigate = useNavigate();
   const { id } = useParams();
   const idMemo = useMemo(() => { return id }, [id]);
+  const ws = useRef(null);
+  const aux = useRef();
 
   const [message, setMessage] = useState({
     content: "",
     chat: id,
   });
   const [chat, setChat] = useState({});
+  aux.current = chat;
 
   useEffect(() => {
     axios.get(`/api/chats/${idMemo}`)
@@ -33,39 +36,35 @@ export default function Chat() {
     if (Object.keys(chat).length !== 0) messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }, [chat]);
 
-  const updateChatData = (data) => {
-    console.log(chat);
-    setChat({
-      ...chat,
-      messages: [...chat.messages, { ...data }]
-    })
-  };
-
   useEffect(() => {
-    const ws = new WebSocket('ws://127.0.0.1:3000/cable')
-    ws.onopen = () => {
-      ws.send(
+    const socket = new WebSocket('ws://127.0.0.1:3000/cable')
+    socket.onopen = () => {
+      socket.send(
         JSON.stringify({
           command: "subscribe",
           identifier: JSON.stringify({
             channel: "ChatChannel",
-            id: idMemo
+            id: id
           }),
         })
       );
     }
 
-    ws.onmessage = (e) => {
+    socket.onmessage = (e) => {
       const data = JSON.parse(e.data);
-      if (Object.keys(chat).length === 0) return
       if (data.type === "ping") return;
       if (data.type === "welcome") return;
       if (data.type === "confirm_subscription") return;
 
       const message = data.message;
-      updateChatData(message);
+      setChat({
+        ...aux.current,
+        messages: [...aux.current.messages, message]
+      })
     };
-  }, [idMemo])
+    ws.current = socket;
+
+  }, [])
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -86,7 +85,6 @@ export default function Chat() {
   return (
     <>
       <BackgroundHeader class={"header-bg-chat"}></BackgroundHeader>
-
       {
         Object.keys(chat).length !== 0 ?
           <>
@@ -115,7 +113,7 @@ export default function Chat() {
                 {
                   Array.from(chat.messages).map((mess, i) => {
                     return (
-                      <Message key={mess.id} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
+                      <Message key={i} type={mess.user_id == localID ? "sent" : "received"} content={mess.content}></Message>
                     )
                   })
                 }
