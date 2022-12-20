@@ -18,10 +18,14 @@ class UsersController < ApplicationController
 
   def update
     if @current_user.id = params[:id]
+      # @test = "no"
+      # if params[:user][:password]
+      #   @test = params[:user][:password]
+      # end
       @user = User.find(params[:id])
       @user.update(user_params)
     end
-    render json: @user
+    render json: UserSerializer.new(@user).serializable_hash[:data][:attributes]
   end 
 
   def show
