@@ -15,7 +15,7 @@ export default function Chat() {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const idMemo = useMemo(() => { return id }, [id]);
+  const idMemo = id; //useMemo(() => { return id }, [id]);
   const ws = useRef(null);
   const aux = useRef();
 
