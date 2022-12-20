@@ -142,7 +142,7 @@ Table that represent the reflesive relationship between users.
 * friend_id: The foreign key that represent the friend of the user.
 
 ## Use cases
-![diagrama casos de uso](https://user-images.githubusercontent.com/56371021/208329978-29a8def0-6bee-4ff3-9f60-0a5a108ba3d5.png)
+![Fastpeak Use Case](https://user-images.githubusercontent.com/83511656/208560005-32378f4d-d73a-4d14-9341-18a26d7aafb3.jpg)
 
 As we can see, the admin has full control of all the CRUDS while the average user of the app will only be able to see the information.
 
@@ -150,9 +150,9 @@ As we can see, the admin has full control of all the CRUDS while the average use
 
 Fastpeak's Figma prototype helps me validate ideas and communicate my vision and goals to others. I hope it gives you a good mental outline of the project.
 
-[Figma Prototype]https://www.figma.com/file/dYxevTKjXoHADpOo6x22tN/Fastpeak?node-id=0%3A1&t=ZS2Rve4QmuIQZINB-0
+[Figma Prototype](https://www.figma.com/file/dYxevTKjXoHADpOo6x22tN/Fastpeak?node-id=0%3A1&t=ZS2Rve4QmuIQZINB-0)
 
-## Tecnhology stack comparison
+## Technology stack comparison
 #### Rails 
 Ruby on Rails, often simply called Rails, is a web application framework written in the Ruby programming language. It is designed to make it easier for developers to build and deploy web applications quickly.
 There are many other programming languages and frameworks that can be used for building web applications, each with its own strengths and use cases. Some popular alternatives to Rails include:
