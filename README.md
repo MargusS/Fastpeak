@@ -1,14 +1,14 @@
-# Fastpeak
+# Fastpeak 
 
 Fastpeak is a proyect oriented to be the chat of https://eduapp-project.eu/ 
 
-## Description
+## Description :speech_balloon:
 
 ### Improving educational commnication
 
 Fastpeak is a chat app designed to improve communication between teachers and students. It offers a secure and convenient platform for educators and learners to connect and collaborate in real time. With Fastpeak, teachers can easily send messages and materials to their students, track progress, and provide feedback on assignments. Students can use Fastpeak to ask questions, get help with coursework, and stay up to date on class announcements. Fastpeak's user-friendly interface and powerful features make it an essential tool for education in the 21st century.
 
-## Getting Started
+## Getting Started :zap:
 
 ### Installing & Executing program
 
@@ -91,7 +91,7 @@ npm run start
 This should start the development server for the React app and you should now be able to access the backend API from the React frontend.
 
 
-## Data Model
+## Data Model :card_file_box:
 
 ### Entity Relationship 
 ![Chat Project drawio](https://user-images.githubusercontent.com/83511656/208487216-a545c6c7-28c5-49af-986b-b9afe846849e.png)
@@ -146,14 +146,22 @@ Table that represent the reflesive relationship between users.
 
 As we can see, the admin has full control of all the CRUDS while the average user of the app will only be able to see the information.
 
-## Prototype
+## Prototype :art:
 
 Fastpeak's Figma prototype helps me validate ideas and communicate my vision and goals to others. I hope it gives you a good mental outline of the project.
 
 [Figma Prototype](https://www.figma.com/file/dYxevTKjXoHADpOo6x22tN/Fastpeak?node-id=0%3A1&t=ZS2Rve4QmuIQZINB-0)
 
+## Api documentation :electric_plug:
+
+To test know how the API works and to test it.
+
+[Fastpeack API WIth Postman](https://documenter.getpostman.com/view/23660227/2s8Z6saFrz)
+
 ## Technology stack comparison
 #### Rails 
+ [![My Skills](https://skillicons.dev/icons?i=rails)](https://skillicons.dev)
+ 
 Ruby on Rails, often simply called Rails, is a web application framework written in the Ruby programming language. It is designed to make it easier for developers to build and deploy web applications quickly.
 There are many other programming languages and frameworks that can be used for building web applications, each with its own strengths and use cases. Some popular alternatives to Rails include:
 
@@ -166,6 +174,7 @@ There are many other programming languages and frameworks that can be used for b
 Again, the best language or framework for your project will depend on your specific needs and requirements. It's worth considering a few different options and evaluating their pros and cons before making a decision
 
 #### React
+ [![My Skills](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
 
 React is a JavaScript library for building user interfaces. It was developed by Facebook, and is often used for building single-page applications and mobile applications.
 There are many other JavaScript libraries and frameworks for building user interfaces, each with its own strengths and use cases. Some popular alternatives to React include:
@@ -177,7 +186,7 @@ There are many other JavaScript libraries and frameworks for building user inter
  
 Ultimately, the best library or framework for your project will depend on your specific needs and requirements. It's worth considering a few different options and evaluating their pros and cons before making a decision.
 
-## Author
+## Author 	:technologist:
 
 Agustin Nicolas Marani Ghiacci.
 
