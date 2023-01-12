@@ -35,9 +35,10 @@
 }
 
 .received {
-    background-color: aqua !important;
+    background-color: var.$blue !important;
 }
 
 .sent {
+    background-color: var.$dark-orange !important;
     align-self: flex-end;
 }

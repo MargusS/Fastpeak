@@ -24,16 +24,15 @@ export default function LoginForm() {
     axios.post(`/api/sessions`, { user }, { withCredentials: true })
       .then(res => {
         localStorage.setItem('user_id', res.data.user.id)
+        localStorage.setItem('user_avatar', res.data.user.avatar_url)
+        navigate('/home')
       })
-      .then(res => console.log(user))
-      // .then(navigate(`/home`))
       .catch(err => { console.log(err) })
   };
 
   const handleClick = () => {
     navigate('/registration')
   }
-
   return (
     <>
       <Box component="form" onSubmit={handleSubmit}>

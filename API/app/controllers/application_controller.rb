@@ -26,8 +26,8 @@ class ApplicationController < ActionController::API
 
   def destroy
       @all = controller_name.classify.constantize.all 
-      @detail = controller_name.classify.constantize.find(params[:id])
-      @detail.destroy
+      @object = controller_name.classify.constantize.find(params[:id])
+      @object.destroy
       render json: @all
   end 
 

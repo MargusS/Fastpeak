@@ -22,12 +22,12 @@
 
 .header-items {
     width: 90%;
+}
 
-    .logo-name {
-        color: var.$blue;
-        font-weight: 600;
-        font-family: var.$logo_font;
-    }
+.logo-name {
+    color: var.$blue;
+    font-weight: 600;
+    font-family: var.$logo_font;
 }
 
 .chat {
@@ -42,5 +42,5 @@
 }
 
 .chat-text-item {
-    min-width: 70%;
+    min-width: 60%;
 }

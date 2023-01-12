@@ -10,7 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function ChatOption({ chatID, chatDelete }) {
+export default function DeleteChat({ chatID, chatDelete }) {
   const [options, setOptions] = useState(null)
   const [visible, setVisible] = useState(false)
 
@@ -31,7 +31,6 @@ export default function ChatOption({ chatID, chatDelete }) {
     if (event.target.name === "confirm") {
       chatDelete(chatID)
     }
-
   };
 
   const onDelete = (event) => {
