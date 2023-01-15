@@ -18,7 +18,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "email should be valid" do
     @user.email = 'invalid_email'
-    assert @user.valid?, "Email should follow the standard email structure"
+    assert_not @user.valid?, "Email should follow the standard email structure"
   end
 
   test "password should be at most 8 characters long" do
