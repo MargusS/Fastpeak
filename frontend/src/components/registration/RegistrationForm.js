@@ -3,10 +3,14 @@ import { FormControl, Input, InputLabel, Button, Box } from "@mui/material";
 import { Stack } from "@mui/system";
 import Typography from '@mui/material/Typography';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import axios from 'axios'
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useTheme } from '@mui/styles';
 
 export default function RegistrationForm() {
+
+  const theme = useTheme()
+
   const navigate = useNavigate()
   const [user, setUser] = useState({
     email: "",
@@ -16,8 +20,6 @@ export default function RegistrationForm() {
     status: "Online",
     avatar: null
   });
-
-
 
   const handleChangeAvatar = event => {
     setUser({
@@ -34,6 +36,7 @@ export default function RegistrationForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log("Called")
     const data = new FormData();
 
     data.append("user[email]", user.email);
@@ -56,7 +59,7 @@ export default function RegistrationForm() {
     <Box component="form" onSubmit={handleSubmit}>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={4} sx={{ padding: "0 1em", margin: "1em 0", height: "40vh" }}>
         <Stack>
-          <Button variant="outlined" component="label" color="blue" sx={{ borderRadius: "50%", padding: 0, minWidth: "inherit", width: "10em", height: "10em", overflow: "hidden" }} >
+          <Button variant="outlined" component="label" sx={{ borderRadius: "50%", padding: 0, minWidth: "inherit", width: "10em", height: "10em", overflow: "hidden" }} >
             <Stack justifyContent="center" alignItems="center" sx={{ '& .MuiStack-root': { alignItems: "center" }, rowGap: "1em" }}>
               {
                 user.avatar === null ?
@@ -74,26 +77,26 @@ export default function RegistrationForm() {
           </Button>
         </Stack>
         <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>
-          <FormControl variant="standard" color="blue" >
+          <FormControl variant="standard" >
             <InputLabel htmlFor="username" >Username</InputLabel>
-            <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} />
+            <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} required />
           </FormControl>
-          <FormControl variant="standard" color="blue">
+          <FormControl variant="standard">
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
+            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} required />
           </FormControl>
-          <FormControl variant="standard" color="blue">
+          <FormControl variant="standard">
             <InputLabel htmlFor="password">Password</InputLabel>
-            <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} />
+            <Input id="password" name="password" type="password" onChange={handleChange} value={user.password} required />
           </FormControl>
-          <FormControl variant="standard" color="blue">
+          <FormControl variant="standard">
             <InputLabel htmlFor="password_confirmation">Repeat Password</InputLabel>
-            <Input id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} />
+            <Input id="password_confirmation" name="password_confirmation" type="password" onChange={handleChange} value={user.password_confirmation} required />
           </FormControl>
         </Stack>
       </Stack>
       <Stack>
-        <Button sx={{ margin: "0 auto" }} variant="contained" color="blue" size="large" type="submit">Sign In</Button>
+        <Button sx={{ margin: "0 auto" }} variant="contained" size="large" type="submit">Sign In</Button>
       </Stack>
     </Box>
   )

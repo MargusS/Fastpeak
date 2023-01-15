@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginView from "./components/login/LoginView";
 import HomeView from "./components/home/HomeView";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Chat from "./components/chat/Chat";
 import NewChat from "./components/new_chat/NewChat";
 import RegistrationView from "./components/registration/RegistrationView";
