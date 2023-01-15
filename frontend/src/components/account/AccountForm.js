@@ -83,11 +83,11 @@ export default function AccountForm() {
         <Stack spacing={2.5} sx={{ paddingBottom: "1em" }}>
           <FormControl variant="standard" color="blue" >
             <InputLabel htmlFor="username" >Username</InputLabel>
-            <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} />
+            <Input id="username" name="username" type="text" onChange={handleChange} value={user.username} required />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} />
+            <Input id="email" name="email" type="email" onChange={handleChange} value={user.email} required />
           </FormControl>
           <FormControl variant="standard" color="blue">
             <InputLabel htmlFor="password">New Password</InputLabel>
