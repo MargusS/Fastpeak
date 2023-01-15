@@ -13,9 +13,15 @@ development:
 
   port: 5432
 
-# test:
-#   <<: *default
-#   database: API_test
+test:
+  <<: *default
+  database: API_test
+
+  
+  username: postgres
+  password: root
+
+  port: 5432
 
 #
 #   production:

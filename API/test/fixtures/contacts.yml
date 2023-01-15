@@ -2,8 +2,5 @@
 
 one:
   user: one
-  user: one
+  friend: one
 
-two:
-  user: two
-  user: two
