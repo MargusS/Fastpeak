@@ -51,7 +51,7 @@ export default function AccountForm() {
     event.preventDefault();
     axios.post(`/api/users`, data)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         localStorage.setItem('user_id', res.data.user.id)
         localStorage.setItem('user_avatar', res.data.user.avatar_url)
         navigate('/home')
@@ -60,7 +60,7 @@ export default function AccountForm() {
 
   return (
     <Box component="form" onSubmit={handleSubmit}>
-      {console.log(user)}
+      {/* {console.log(user)} */}
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={4} sx={{ padding: "0 1em", margin: "1em 0", height: "40vh" }}>
         <Stack>
           <Button variant="outlined" component="label" color="blue" sx={{ borderRadius: "50%", padding: 0, minWidth: "inherit", width: "10em", height: "10em", overflow: "hidden" }} >

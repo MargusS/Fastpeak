@@ -33,10 +33,10 @@ export default function NewChat() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(chat)
+    // console.log(chat)
     axios.post(`/api/chats`, { chat })
       .then(res => { navigate(`/chat/${res.data.id}`) })
-      .catch(err => { console.log(err) })
+      .catch(err => { /*console.log(err) */ })
     setChat({
       ...chat,
       message: ""

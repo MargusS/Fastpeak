@@ -38,7 +38,7 @@ export default function NewContactView() {
   const handleClickAdd = event => {
     axios.post('/api/contacts', { contact })
       .then(navigate('/home'))
-      .catch(err => console.log(err))
+    // .catch(err => /*console.log(err)*/)
   }
 
   return (

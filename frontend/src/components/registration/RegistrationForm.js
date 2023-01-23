@@ -5,11 +5,11 @@ import Typography from '@mui/material/Typography';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { useTheme } from '@mui/styles';
+// import { useTheme } from '@mui/styles';
 
 export default function RegistrationForm() {
 
-  const theme = useTheme()
+  // const theme = useTheme()
 
   const navigate = useNavigate()
   const [user, setUser] = useState({
@@ -36,6 +36,7 @@ export default function RegistrationForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
+
     console.log("Called")
     const data = new FormData();
 
@@ -48,7 +49,7 @@ export default function RegistrationForm() {
     event.preventDefault();
     axios.post(`/api/users`, data)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         localStorage.setItem('user_id', res.data.user.id)
         localStorage.setItem('user_avatar', res.data.user.avatar_url)
         navigate('/home')
