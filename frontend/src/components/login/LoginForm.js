@@ -27,7 +27,7 @@ export default function LoginForm() {
         localStorage.setItem('user_avatar', res.data.user.avatar_url)
         navigate('/home')
       })
-      .catch(err => { console.log(err) })
+      .catch(err => { /*console.log(err) */ })
   };
 
   const handleClick = () => {

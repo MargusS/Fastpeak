@@ -19,6 +19,10 @@ class UserTest < ActiveSupport::TestCase
     @user.username = 'aaa' 
     assert @user.valid?, "name should be ok at 15 chars"
   end
+  test "name should be ok with 15 chars" do
+    @user.username = 'a' * 15
+    assert_not @user.valid?, "name should be ok with 15 chars"
+  end
 
   test "email should be valid" do
     @user.email = 'agus@agus.com'

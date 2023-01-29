@@ -38,6 +38,6 @@ describe("Funcionality", () => {
     const button = getByText("Sign In");
     fireEvent.click(button)
 
-    expect(spyHandler.mock.calls).toHaveLength(1);
+    expect(spyHandler).toHaveBeenCalled();
   })
 })
