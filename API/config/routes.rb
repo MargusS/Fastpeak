@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get :logged_in, to: "application#logged_in"
     get :current, to: "sessions#get_current"
     get :show_by_email, to: "users#show_by_email"
+    get :create_report, to: "report#create_report"
     root to: 'application#home'
   end
 end
