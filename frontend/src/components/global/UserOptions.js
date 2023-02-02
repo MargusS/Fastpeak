@@ -3,6 +3,7 @@ import { IconButton, Typography, Stack, Popover } from "@mui/material";
 import { Button } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { blueGrey } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
@@ -37,16 +38,21 @@ export default function UserOptions() {
           <ExpandMoreIcon></ExpandMoreIcon>
         </IconButton>
         <Popover id={id} open={open} anchorEl={options} onClose={handleClosePopover} anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }} transformOrigin={{ vertical: 'top', horizontal: 'center' }} sx={{ marginTop: 2 }}>
-          <Stack alignItems="center" justifyContent="space-around" sx={{ backgroundColor: "#272E4F", minWidth: "4em" }} >
+          <Stack alignItems="end" sx={{ backgroundColor: "#272E4F", minWidth: "4em" }} >
             <Button onClick={(event) => {
               event.stopPropagation()
               navigate('/account')
-            }} sx={{ p: "1em", width: "100%" }} size="large" startIcon={<PermIdentityIcon sx={{ color: blueGrey[500] }} />}>
+            }} sx={{ p: "1em", width: "100%", justifyContent: "start" }} size="large" startIcon={<PermIdentityIcon sx={{ color: blueGrey[500] }} />}>
               <Typography sx={{ color: "#fff" }} variant="subtitle2">
                 Account
               </Typography>
             </Button>
-            <Button onClick={handleLogOut} sx={{ p: "1em", width: "100%" }} size="large" startIcon={<LogoutIcon sx={{ color: blueGrey[500] }} />}>
+            <Button sx={{ p: "1em", width: "100%", justifyContent: "start" }} size="large" startIcon={<PictureAsPdfIcon sx={{ color: blueGrey[500] }} />}>
+              <Typography sx={{ color: "#fff" }} variant="subtitle2">
+                Report
+              </Typography>
+            </Button>
+            <Button onClick={handleLogOut} sx={{ p: "1em", width: "100%", justifyContent: "start" }} size="large" startIcon={<LogoutIcon sx={{ color: blueGrey[500] }} />}>
               <Typography sx={{ color: "#fff" }} variant="subtitle2">
                 Logout
               </Typography>
