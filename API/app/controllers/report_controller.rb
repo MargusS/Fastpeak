@@ -1,8 +1,15 @@
 class ReportController < ApplicationController
   include CurrentUserConcern
+  include ActionController::MimeResponds
+  skip_before_action :logged_in
+  require "prawn"
 
   def create_report
-    @all = controller_name.classify.constantize.all 
-    render json: @all
+    pdf=Prawn::Document.new
+    pdf.text "Hello World"
+    send_data(
+      pdf.render,
+      filename: 'hello.pdf',
+      type: 'application/pdf')
   end 
 end
