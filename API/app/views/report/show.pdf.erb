@@ -4,9 +4,23 @@
     <title></title>
 </head>
 <body>
-    <h1>En el mercho</h1>
-    <h2>Escuchando Ferxxo</h2>
-    <h3>Hoy quiero dormir</h3>
-    <h4>Pero acostado en tu pecho</h4>
+    <h1>Fastpeak</h1>
+    <h2>User Report</h2>
+    <br/>
+    <h2>Messages Sent</h2>
+    <h3>Total Messages: <%= @total_messages_sent %></h3>
+    <% @month_messages_sent.each do |mess| %>
+        <% if mess[0] == @current_month %>
+            <h3>Month Messages: <%= mess[1] %></h3>
+        <% end %>
+    <% end %>
+    <br/>
+    <h2>Messages Received</h2>
+    <h3>Total Messages: <%= @total_messages_rec %></h3>
+    <% @month_messages_rec.each do |mess| %>
+        <% if mess[0] == @current_month %>
+            <h3>Month Messages: <%= mess[1] %></h3>
+        <% end %>
+    <% end %>
 </body>
 </html>
