@@ -103,7 +103,6 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
-    matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
@@ -120,11 +119,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.1-x64-mingw-ucrt)
       racc (~> 1.4)
-    pdf-core (0.9.0)
     pg (1.4.5-x64-mingw-ucrt)
-    prawn (2.4.0)
-      pdf-core (~> 0.9.0)
-      ttfunk (~> 1.7)
     puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.2)
@@ -167,7 +162,6 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.1)
-    ttfunk (1.7.0)
     turbo-rails (1.3.3)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -184,6 +178,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.6.3)
+      activesupport
+    wkhtmltopdf-binary (0.12.6.6)
     zeitwerk (2.6.6)
 
 PLATFORMS
@@ -198,9 +195,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jsonapi-serializer (~> 2.2)
-  matrix (~> 0.4.2)
   pg (~> 1.1)
-  prawn (~> 2.4)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.4)
@@ -209,6 +204,8 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  wicked_pdf
+  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 3.1.2p20

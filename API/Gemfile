@@ -61,6 +61,6 @@ end
 
 gem "jsonapi-serializer", "~> 2.2"
 
-gem "prawn", "~> 2.4"
+gem "wicked_pdf"
 
-gem "matrix", "~> 0.4.2"
+gem "wkhtmltopdf-binary"
