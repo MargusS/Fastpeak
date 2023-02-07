@@ -72,6 +72,7 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
+    chartkick (5.0.1)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
     date (3.3.3)
@@ -79,8 +80,11 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
+    ffi (1.15.5-x64-mingw-ucrt)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    groupdate (6.2.0)
+      activesupport (>= 5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -158,9 +162,25 @@ GEM
     redis (4.8.0)
     reline (0.3.2)
       io-console (~> 0.5)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
+    sprockets (4.2.0)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.1)
+    tilt (2.0.11)
     timeout (0.3.1)
     turbo-rails (1.3.3)
       actionpack (>= 6.0.0)
@@ -191,7 +211,9 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   byebug
+  chartkick
   debug
+  groupdate (~> 6.2)
   importmap-rails
   jbuilder
   jsonapi-serializer (~> 2.2)
@@ -200,6 +222,8 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.4)
   redis (~> 4.0)
+  sassc-rails (~> 2.1)
+  sprockets-rails (~> 3.4)
   stimulus-rails
   turbo-rails
   tzinfo-data

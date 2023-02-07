@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <%= wicked_pdf_stylesheet_link_tag 'application', media: "all" %>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" > 
 </head>
 <body>
     <h1>Fastpeak</h1>
-    <h2>User Report</h2>
+    <h2 class="subtitle">User Messages Report</h2>
     <br/>
     <h2>Messages Sent</h2>
-    <h3>Total Messages: <%= @total_messages_sent %></h3>
-    <% @month_messages_sent.each do |mess| %>
-        <% if mess[0] == @current_month %>
-            <h3>Month Messages: <%= mess[1] %></h3>
-        <% end %>
-    <% end %>
+    <table class="table table-striped">
+        <tbody>
+            <tr class="table-primary">
+                <th><h3>This Month</h3></th>
+                <th>
+                    <% @month_messages_sent.each do |mess| %>
+                        <% if mess[0] == @current_month %>
+                            <h3><%= mess[1] %></h3>
+                        <% end %>
+                    <% end %>
+                </th>
+            </tr>
+            <tr>
+                <th><h3>Total</h3></th>
+                <th><h3><%= @total_messages_sent %></h3></th>
+            </tr>
+        </tbody>
+    </table>
     <br/>
     <h2>Messages Received</h2>
-    <h3>Total Messages: <%= @total_messages_rec %></h3>
-    <% @month_messages_rec.each do |mess| %>
-        <% if mess[0] == @current_month %>
-            <h3>Month Messages: <%= mess[1] %></h3>
-        <% end %>
-    <% end %>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th><h3>This Month</h3></th>
+                <th>
+                    <% @month_messages_rec.each do |mess| %>
+                        <% if mess[0] == @current_month %>
+                            <h3><%= mess[1] %></h3>
+                        <% end %>
+                    <% end %>
+                </th>
+            </tr>
+            <tr>
+                <th><h3>Total</h3></th>
+                <th><h3><%= @total_messages_rec %></h3></th>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

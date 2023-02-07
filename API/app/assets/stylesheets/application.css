@@ -1,0 +1,48 @@
+/*
+*= require_tree .
+*= require_self
+*/
+body {
+    padding: 2.5em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #CB4B2E;
+    font-weight: bold;
+}
+
+
+th {
+    border: none !important;
+}
+
+table,
+tr,
+td,
+th,
+tbody,
+thead,
+tfoot {
+    page-break-inside: avoid !important;
+}
+
+td,
+th {
+    text-align: left !important;
+}
+
+table {
+    margin: 1em 0;
+}
+
+.subtitle {
+    color: #747474;
+}

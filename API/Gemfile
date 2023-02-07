@@ -58,9 +58,16 @@ group :development do
   # gem "spring"
 end
 
-
 gem "jsonapi-serializer", "~> 2.2"
 
 gem "wicked_pdf"
 
 gem "wkhtmltopdf-binary"
+
+gem 'chartkick'
+
+gem "sprockets-rails", "~> 3.4"
+
+gem "groupdate", "~> 6.2"
+
+gem "sassc-rails", "~> 2.1"
